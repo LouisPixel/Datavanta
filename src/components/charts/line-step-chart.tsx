@@ -2,8 +2,19 @@
 
 import { CartesianGrid, Line, LineChart, XAxis, YAxis, Label } from "recharts"
 
+interface CustomLabelProps {
+  x?: number;
+  y?: number;
+  payload?: {
+    value?: number | string;
+  };
+  fill?: string;
+  backgroundColor?: string;
+  formatter?: (value: number) => string;
+}
+
 // Custom label component with background
-const CustomLabel = ({ x, y, payload, fill, backgroundColor, formatter }: any) => {
+const CustomLabel = ({ x, y, payload, fill, backgroundColor, formatter }: CustomLabelProps) => {
   if (!payload || payload.value === undefined) return null;
   const value = payload.value;
   const formattedValue = formatter ? formatter(value) : value;
@@ -140,7 +151,7 @@ export function LineStepChartComp({ data, categories, index, colors, chartColor,
           stroke={colors[0]}
           strokeWidth={2}
           dot={false}
-          label={showLabels ? (props: any) => (
+          label={showLabels ? (props: CustomLabelProps) => (
             <CustomLabel
               {...props}
               fill={textColor}

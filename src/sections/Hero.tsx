@@ -1,7 +1,6 @@
 "use client";
 import ProductImage from "@/assets/images/graphs.png";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { TextEffect } from '@/components/ui/text-effect'
 import { AnimatedGroup } from '@/components/ui/animated-group'
 

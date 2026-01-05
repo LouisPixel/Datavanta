@@ -4,11 +4,12 @@ import { BarChart3, Settings, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import logoImage from '@/assets/images/datavanta logo.png';
 import { useTheme } from '@/components/theme'; // Assuming theme.tsx is in the same components directory
+import { Project } from '@/interfaces/data';
 
 interface SidebarProps {
     sidebarOpen: boolean;
     setSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
-    setSelectedProject: React.Dispatch<React.SetStateAction<any | null>>;
+    setSelectedProject: React.Dispatch<React.SetStateAction<Project | null>>;
     setShowSettings: React.Dispatch<React.SetStateAction<boolean>>;
     setIsViewingProject?: React.Dispatch<React.SetStateAction<boolean>>;
 }

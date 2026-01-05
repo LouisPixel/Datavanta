@@ -1,6 +1,5 @@
 'use client';
 import React from 'react';
-import { cn } from '@/lib/utils';
 import { NewHeader } from '@/components/header-2';
 import FooterSection from '@/components/footer';
 import {
@@ -227,7 +226,7 @@ export default function GraphsPage() {
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
               Explore our comprehensive collection of data visualization charts, 
-              each designed to tell your data's story beautifully.
+              each designed to tell your data&apos;s story beautifully.
             </p>
           </div>
         </div>
@@ -252,7 +251,13 @@ export default function GraphsPage() {
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {category.charts.map((chart, chartIndex) => {
                     const ChartComponent = chart.component;
-                    const chartData = chart.data.map((item: any) => ({
+                    type ChartDataItem = {
+                      label: string;
+                      value: number;
+                      value2?: number;
+                      color?: string;
+                    };
+                    const chartData = chart.data.map((item: ChartDataItem) => ({
                       ...item,
                       label: item.label,
                       value: item.value,
@@ -285,7 +290,7 @@ export default function GraphsPage() {
                                   data: chartData,
                                   category: "value",
                                   index: "label",
-                                  colors: chartData.map((d: any) => d.color || '#9B99FE'),
+                                  colors: chartData.map((d: ChartDataItem) => d.color || '#9B99FE'),
                                   chartColor: "#9B99FE",
                                   chartColor2: "#2BC8B7",
                                   backgroundColor: "transparent",
@@ -296,7 +301,7 @@ export default function GraphsPage() {
                                   showXAxis: true,
                                   showYAxis: true,
                                   mt: "h-full"
-                                } as any)}
+                                } as Record<string, unknown>)}
                               />
                             ) : (
                               <ChartComponent
@@ -315,7 +320,7 @@ export default function GraphsPage() {
                                   showXAxis: true,
                                   showYAxis: true,
                                   mt: "h-full"
-                                } as any)}
+                                } as Record<string, unknown>)}
                               />
                             )}
                           </div>

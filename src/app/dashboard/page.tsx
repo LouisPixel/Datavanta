@@ -1,5 +1,5 @@
 'use client'
-import { useSession, signOut, signIn } from "@/lib/auth/auth-client" // Import signOut directly
+import { useSession, signOut } from "@/lib/auth/auth-client" // Import signOut directly
 import { DatavantaDashboard } from "../../components/datavanta-dashboard"
 import { redirect } from "next/navigation"
 import { Provider } from 'react-redux';

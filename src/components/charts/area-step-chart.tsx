@@ -2,8 +2,19 @@
 
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis, Label } from "recharts"
 
+interface CustomLabelProps {
+  x?: number;
+  y?: number;
+  payload?: {
+    value?: number | string;
+  };
+  fill?: string;
+  backgroundColor?: string;
+  formatter?: (value: number) => string;
+}
+
 // Custom label component with background
-const CustomLabel = ({ x, y, payload, fill, backgroundColor, formatter }: any) => {
+const CustomLabel = ({ x, y, payload, fill, backgroundColor, formatter }: CustomLabelProps) => {
   if (!payload || payload.value === undefined) return null;
   const value = payload.value;
   const formattedValue = formatter ? formatter(value) : value;
@@ -150,7 +161,7 @@ export function AreaStepChartComp({ data, categories, index, colors, chartColor,
           baseValue={getBaseValue()}
           connectNulls={true}
           isAnimationActive={false}
-          label={showLabels ? (props: any) => (
+          label={showLabels ? (props: CustomLabelProps) => (
             <CustomLabel
               {...props}
               fill={textColor}

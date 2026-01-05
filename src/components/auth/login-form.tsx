@@ -1,5 +1,4 @@
 "use client";
-import { LogoIcon } from '@/components/logo'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -115,7 +114,7 @@ export default function LoginForm() {
 
                 <div className="bg-[#1b1c1c] rounded-(--radius) border border-[#1b1c1c] p-3">
                     <p className="text-white-950 text-center text-sm">
-                        Don't have an account ?
+                        Don&apos;t have an account ?
                         <Button
                             asChild
                             variant="link"

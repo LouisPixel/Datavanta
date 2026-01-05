@@ -21,13 +21,13 @@ export default function ContentSection() {
                             <CodeIllustration className="sm:col-span-2" />
                             <div className="mt-6 sm:col-span-3 sm:mt-0 sm:border-l sm:border-[#1b1c1c] sm:pl-12">
                                 <h3 className="text-[#2b6ac4] text-xl font-semibold">Marketing Campaigns</h3>
-                                <p className="text-muted-foreground mt-4 text-lg">We'll put together your schedule on automatically. You'll keep app deadlines, and will work on the highest priority items first.</p>
+                                <p className="text-muted-foreground mt-4 text-lg">We&apos;ll put together your schedule on automatically. You&apos;ll keep app deadlines, and will work on the highest priority items first.</p>
                             </div>
                         </div>
                         <div className="grid sm:grid-cols-5 sm:divide-x border-[#1b1c1c]">
                             <div className="pt-12 sm:col-span-3 sm:pr-12">
                                 <h3 className="text-[#ec3e52] text-xl font-semibold">AI Meeting Scheduler</h3>
-                                <p className="text-muted-foreground mt-4 text-lg">Ask the chat to create or update your events. Ask it how much time you've spent on demo calls last week. Or have it prepare today's agendas.</p>
+                                <p className="text-muted-foreground mt-4 text-lg">Ask the chat to create or update your events. Ask it how much time you&apos;ve spent on demo calls last week. Or have it prepare today&apos;s agendas.</p>
                             </div>
                             <div className="sm:border-r sm:border-[#1b1c1c] row-start-1 flex items-center justify-center pt-12 sm:col-span-2 sm:row-start-auto">
                                 <ScheduleIllustation className="pt-8" />

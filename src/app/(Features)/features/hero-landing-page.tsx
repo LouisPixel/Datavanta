@@ -1,8 +1,6 @@
 'use client'
 
 import { useEffect, useState } from "react"
-import { ChevronDown, ArrowRight, Menu, X } from 'lucide-react'
-import Link from "next/link"
 
 export function TuringLanding() {
   const [mobileOpen, setMobileOpen] = useState(false)

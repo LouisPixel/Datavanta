@@ -4,13 +4,12 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuItem } from '@/components/ui/dropdown-menu';
-import { PlusCircle, BarChart3, LineChart as LineChartIcon, PieChart as PieChartIcon, ScatterChart, AreaChart as AreaChartIcon, Trash2, Edit, Save, X, Settings as SettingsIcon, Palette, Grid, Type, PanelLeft, User, TrendingUp, BarChart2, ArrowLeft, Database, Import, Activity } from 'lucide-react';
+import { PlusCircle, BarChart3, LineChart as LineChartIcon, PieChart as PieChartIcon, AreaChart as AreaChartIcon, Trash2, Edit, Save, X, Settings as SettingsIcon, Palette, Grid, Type, PanelLeft, User, TrendingUp, BarChart2, ArrowLeft, Database, Import, Activity } from 'lucide-react';
 import { toast } from 'sonner';
 import { Textarea } from '@/components/ui/textarea';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { Slider } from '@/components/ui/slider';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -104,7 +103,14 @@ const isStackedChart = (chartType: Project['chartType']): boolean => {
 };
 
 
-const renderChart = ({ project, chartRef, settings, chartData, valueFormatter }: { project: Project; chartRef: React.RefObject<HTMLDivElement>; settings: { chartAnimation: boolean }; chartData: any[]; valueFormatter: (number: number) => string }) => {
+type ChartDataItem = {
+    label: string;
+    value: number;
+    value2?: number;
+    color?: string;
+};
+
+const renderChart = ({ project, chartRef, chartData, valueFormatter }: { project: Project; chartRef: React.RefObject<HTMLDivElement>; chartData: ChartDataItem[]; valueFormatter: (number: number) => string }) => {
     const chartHeight = project.chartHeight || 400;
     const chartWidth = project.chartWidth || 1170;
     const showLegend = project.showLegend ?? false;
@@ -167,7 +173,7 @@ const renderChart = ({ project, chartRef, settings, chartData, valueFormatter }:
 };
 
 const Settings = React.memo(() => {
-    const { theme, toggleTheme, getThemeClasses } = useTheme();
+    const { getThemeClasses } = useTheme();
     const themeClasses = getThemeClasses();
 
     return (
@@ -189,8 +195,8 @@ export const DatavantaDashboard: React.FC<DashboardProps> = ({
     isAuthenticated,
     onSignOut,
 }) => {
-    const { theme, toggleTheme, getThemeClasses } = useTheme();
-    const themeClasses = useMemo(() => getThemeClasses(), [theme]);
+    const { getThemeClasses } = useTheme();
+    const themeClasses = useMemo(() => getThemeClasses(), [getThemeClasses]);
 
     const [projects, setProjects] = useState<Project[]>([]);
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -208,9 +214,6 @@ export const DatavantaDashboard: React.FC<DashboardProps> = ({
     const [valueColumnIndex, setValueColumnIndex] = useState<number | null>(null);
     const [value2ColumnIndex, setValue2ColumnIndex] = useState<number | null>(null);
     const [showPasteDataModal, setShowPasteDataModal] = useState(false);
-    const [settings, setSettings] = useState({
-        chartAnimation: true,
-    });
     const [isExporting, setIsExporting] = useState(false);
     const [previousBackgroundColor, setPreviousBackgroundColor] = useState<string>('#ffffff');
 
@@ -243,7 +246,7 @@ export const DatavantaDashboard: React.FC<DashboardProps> = ({
         if (selectedProject && selectedProject.backgroundColor !== 'transparent') {
             setPreviousBackgroundColor(selectedProject.backgroundColor);
         }
-    }, [selectedProject?.id]);
+    }, [selectedProject]);
 
     const updateUserProjects = useCallback((updatedProjects: Project[]) => {
         localStorage.setItem(`datavanta-projects-${sessionUserId}`, JSON.stringify(updatedProjects));
@@ -377,7 +380,7 @@ export const DatavantaDashboard: React.FC<DashboardProps> = ({
         } finally {
             setIsExporting(false);
         }
-    }, [chartRef, selectedProject, toast]);
+    }, [chartRef, selectedProject]);
 
     const handlePasteSubmit = useCallback(() => {
         if (labelColumnIndex === null || valueColumnIndex === null || !selectedProject) {
@@ -386,7 +389,6 @@ export const DatavantaDashboard: React.FC<DashboardProps> = ({
         }
 
         const newPoints: DataPoint[] = [];
-        const existingLabels = new Set(selectedProject.data.map(d => d.label));
 
         for (let i = 0; i < parsedPastedRows.length; i++) {
             const row = parsedPastedRows[i];
@@ -454,7 +456,7 @@ export const DatavantaDashboard: React.FC<DashboardProps> = ({
             value2: d.value2,
             color: d.color || COLORS[index % COLORS.length],
         }));
-    }, [selectedProject?.data]);
+    }, [selectedProject]);
 
     if (isLoading) {
         return <div>Loading...</div>
@@ -568,7 +570,7 @@ export const DatavantaDashboard: React.FC<DashboardProps> = ({
                                     </div>
 
                                     {/* Chart Display */}
-                                    {renderChart({ project: selectedProject, chartRef, settings, chartData, valueFormatter })}
+                                    {renderChart({ project: selectedProject, chartRef, chartData, valueFormatter })}
 
                                     {/* Project Configuration */}
                                     <Card className={`${themeClasses.bg} border ${themeClasses.border} rounded-lg shadow-md mt-6`}>

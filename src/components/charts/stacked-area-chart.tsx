@@ -1,7 +1,18 @@
-import { Area, AreaChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, Label } from "recharts"
+import { Area, AreaChart, CartesianGrid, XAxis, YAxis, Legend, ResponsiveContainer, Label } from "recharts"
+
+interface CustomLabelProps {
+  x?: number;
+  y?: number;
+  payload?: {
+    value?: number | string;
+  };
+  fill?: string;
+  backgroundColor?: string;
+  formatter?: (value: number) => string;
+}
 
 // Custom label component with background
-const CustomLabel = ({ x, y, payload, fill, backgroundColor, formatter }: any) => {
+const CustomLabel = ({ x, y, payload, fill, backgroundColor, formatter }: CustomLabelProps) => {
   if (!payload || payload.value === undefined) return null;
   const value = payload.value;
   const formattedValue = formatter ? formatter(value) : value;
@@ -37,8 +48,6 @@ import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-  ChartLegend,
-  ChartLegendContent,
 } from "@/components/ui/chart"
 
 interface StackedAreaChartCompProps {
@@ -137,7 +146,7 @@ export function StackedAreaChartComp({ data, categories, index, colors, chartCol
             stackId="a"
             fill={colors[0]}
             stroke={colors[0]}
-            label={showLabels ? (props: any) => (
+            label={showLabels ? (props: CustomLabelProps) => (
               <CustomLabel
                 {...props}
                 fill={textColor}
@@ -152,7 +161,7 @@ export function StackedAreaChartComp({ data, categories, index, colors, chartCol
             stackId="a"
             fill={colors[1]}
             stroke={colors[1]}
-            label={showLabels ? (props: any) => (
+            label={showLabels ? (props: CustomLabelProps) => (
               <CustomLabel
                 {...props}
                 fill={textColor}

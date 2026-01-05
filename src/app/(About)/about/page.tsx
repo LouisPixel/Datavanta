@@ -44,7 +44,7 @@ export default function AboutPage() {
               </span>
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
-              We're on a mission to make beautiful, powerful data visualizations accessible to everyone, 
+              We&apos;re on a mission to make beautiful, powerful data visualizations accessible to everyone, 
               regardless of technical expertise.
             </p>
           </div>
@@ -63,7 +63,7 @@ export default function AboutPage() {
             <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
               <p>
                 Datavanta was born from a simple observation: creating beautiful, effective data visualizations 
-                shouldn't require a degree in design or weeks of learning complex tools. We saw talented people 
+                shouldn&apos;t require a degree in design or weeks of learning complex tools. We saw talented people 
                 struggling with clunky interfaces, limited customization options, and tools that prioritized 
                 functionality over aesthetics.
               </p>
@@ -74,7 +74,7 @@ export default function AboutPage() {
               </p>
               <p>
                 Today, Datavanta empowers thousands of users worldwide to create stunning visualizations that 
-                tell compelling stories, drive decisions, and inspire action. We're just getting started.
+                tell compelling stories, drive decisions, and inspire action. We&apos;re just getting started.
               </p>
             </div>
           </div>
@@ -139,9 +139,9 @@ export default function AboutPage() {
                 technical expertise.
               </p>
               <p>
-                We maintain high standards for code quality, performance, and reliability. Technical excellence isn't 
-                just a goal—it's a requirement. Every feature we ship is built to last, perform flawlessly, and 
-                scale with our users' needs.
+                We maintain high standards for code quality, performance, and reliability. Technical excellence isn&apos;t 
+                just a goal—it&apos;s a requirement. Every feature we ship is built to last, perform flawlessly, and 
+                scale with our users&apos; needs.
               </p>
               <p>
                 We empower users to express their data in unique and meaningful ways. Creative expression is at the 

@@ -1,4 +1,3 @@
-import { Logo } from '@/components/logo'
 import Link from 'next/link'
 import  logoImage from "@/assets/images/datavanta logo.png"
 import Image from 'next/image'

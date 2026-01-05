@@ -16,8 +16,6 @@ import {
 import {
   ChartConfig,
   ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
 } from "@/components/ui/chart"
 import React, { useMemo } from "react";
 
@@ -48,9 +46,7 @@ const chartConfig: ChartConfig = {
 
 export const HeatmapChart: React.FC<HeatmapChartProps> = ({
   data,
-  categories,
   index,
-  colors,
   chartColor,
   chartColor2,
   backgroundColor,

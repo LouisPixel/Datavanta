@@ -1,7 +1,5 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
 import { Monitor, LayoutDashboard, Users, Palette } from "lucide-react"; // ✅ Lucide icons
 import Image from "next/image";
 import DisplayCards from "./ui/display-cards";
