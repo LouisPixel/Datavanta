@@ -45,7 +45,7 @@ export function RadialChartMultipleValuesComp({ data, chartColor, chartColor2, b
               clockWise: true,
               dataKey: "value",
               fill: chartColor,
-            } as any)}
+            } as Record<string, unknown>)}
           />
           <RadialBar
             {...({
@@ -55,7 +55,7 @@ export function RadialChartMultipleValuesComp({ data, chartColor, chartColor2, b
               clockWise: true,
               dataKey: "value2",
               fill: chartColor2,
-            } as any)}
+            } as Record<string, unknown>)}
           />
           <ChartTooltip content={<ChartTooltipContent />} />
           <Legend iconSize={10} layout="vertical" verticalAlign="middle" wrapperStyle={{ top: 0, left: 0, color: textColor }} />
