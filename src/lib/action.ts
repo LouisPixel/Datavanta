@@ -24,7 +24,7 @@ export async function signIn(prevState: State, formData: FormData) {
 
   try {
     console.log("Attempting to sign in user:", email);
-    const result = await auth.api.signInEmail({
+    await auth.api.signInEmail({
       body: {
         email,
         password,
@@ -71,7 +71,7 @@ export async function signUp(prevState: State, formData: FormData) {
 
   try {
     console.log("Attempting to sign up user:", email);
-    const result = await auth.api.signUpEmail({
+    await auth.api.signUpEmail({
       body: {
         name: `${firstName} ${lastName}`.trim(),
         email,
