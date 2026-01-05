@@ -128,7 +128,7 @@ export function StackedLineDotsChartComp({ data, categories, index, colors, char
               axisLine={false}
               stroke={textColor}
               tickFormatter={valueFormatter}
-              domain={getYAxisDomain()}
+              domain={getYAxisDomain() as [number, number] | [number, string] | [string, number]}
             >
               {yAxisLabel && (
                 <Label value={yAxisLabel} angle={-90} position="insideLeft" style={{ fill: textColor, textAnchor: 'middle' }} />

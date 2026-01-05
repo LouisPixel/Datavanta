@@ -80,7 +80,7 @@ export function BarChartComp({ data, categories, index, colors, chartColor, back
             tickLine={false}
             axisLine={false}
             tickFormatter={valueFormatter}
-            domain={getYAxisDomain()}
+            domain={getYAxisDomain() as [number, number] | [number, string] | [string, number]}
             stroke={textColor}
           >
             {yAxisLabel && (

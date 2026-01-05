@@ -146,7 +146,7 @@ export function AreaGradientChartComp({ data, categories, index, colors, chartCo
             tickLine={false}
             axisLine={false}
             tickFormatter={valueFormatter}
-            domain={getYAxisDomain()}
+            domain={getYAxisDomain() as [number, number] | [number, string] | [string, number]}
             stroke={textColor}
           >
             {yAxisLabel && (

@@ -140,7 +140,7 @@ export function AreaStepChartComp({ data, categories, index, colors, chartColor,
             tickLine={false}
             axisLine={false}
             tickFormatter={valueFormatter}
-            domain={getYAxisDomain()}
+            domain={getYAxisDomain() as [number, number] | [number, string] | [string, number]}
             stroke={textColor}
           >
             {yAxisLabel && (

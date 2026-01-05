@@ -132,7 +132,7 @@ export function LineChartComp({ data, categories, index, colors, chartColor, bac
             tickLine={false}
             axisLine={false}
             tickFormatter={valueFormatter}
-            domain={getYAxisDomain()}
+            domain={getYAxisDomain() as [number, number] | [number, string] | [string, number]}
             stroke={textColor}
           >
             {yAxisLabel && (
