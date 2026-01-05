@@ -1,0 +1,155 @@
+"use client"
+
+import { CartesianGrid, Line, LineChart, XAxis, YAxis, Label } from "recharts"
+
+// Custom label component with background
+const CustomLabel = ({ x, y, payload, fill, backgroundColor, formatter }: any) => {
+  if (!payload || payload.value === undefined) return null;
+  const value = payload.value;
+  const formattedValue = formatter ? formatter(value) : value;
+  const textWidth = formattedValue.toString().length * 7;
+  const rectWidth = Math.max(textWidth + 8, 40);
+  return (
+    <g>
+      <rect
+        x={x - rectWidth / 2}
+        y={y - 20}
+        width={rectWidth}
+        height={16}
+        fill={backgroundColor}
+        fillOpacity={0.9}
+        rx={4}
+      />
+      <text
+        x={x}
+        y={y - 8}
+        fill={fill}
+        textAnchor="middle"
+        dominantBaseline="middle"
+        fontSize="12"
+        fontWeight="500"
+      >
+        {formattedValue}
+      </text>
+    </g>
+  );
+};
+
+import {
+  ChartConfig,
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+  ChartLegend,
+  ChartLegendContent,
+} from "@/components/ui/chart"
+
+interface LineStepChartCompProps {
+  data: { label: string; value: number; value2?: number; color?: string }[];
+  categories: string[];
+  index: string;
+  colors: string[];
+  chartColor: string;
+  backgroundColor: string;
+  gridColor: string;
+  textColor: string;
+  valueFormatter: (number: number) => string;
+  showLegend?: boolean;
+  legendLabel?: string;
+  showXAxis?: boolean;
+  showYAxis?: boolean;
+  xAxisLabel?: string;
+  yAxisLabel?: string;
+  yAxisMin?: number;
+  yAxisMax?: number;
+  showLabels?: boolean;
+  mt?: string;
+}
+
+const chartConfig: ChartConfig = {
+  value: {
+    label: "Value",
+    color: "hsl(var(--chart-1))",
+  },
+}
+
+export function LineStepChartComp({ data, categories, index, colors, chartColor, backgroundColor, gridColor, textColor, valueFormatter, showLegend = false, legendLabel = 'Value', showXAxis = true, showYAxis = true, xAxisLabel, yAxisLabel, yAxisMin, yAxisMax, showLabels = false, mt }: LineStepChartCompProps) {
+  const updatedChartConfig: ChartConfig = {
+    ...chartConfig,
+    value: { ...chartConfig.value, color: chartColor, label: legendLabel },
+  };
+
+  const getYAxisDomain = () => {
+    if (yAxisMin !== undefined && yAxisMax !== undefined) {
+      return [yAxisMin, yAxisMax];
+    } else if (yAxisMin !== undefined) {
+      return [yAxisMin, 'dataMax'];
+    } else if (yAxisMax !== undefined) {
+      return [0, yAxisMax];
+    }
+    return [0, 'dataMax'];
+  };
+
+  return (
+    <ChartContainer config={updatedChartConfig} className={`min-h-[200px] w-full ${mt}`} style={{ backgroundColor: backgroundColor }}>
+      <LineChart
+        accessibilityLayer
+        data={data}
+        margin={{
+          left: 12,
+          right: 12,
+          top: showLabels ? 20 : 12,
+        }}
+      >
+        <CartesianGrid vertical={false} stroke={gridColor} />
+        {showXAxis && (
+          <XAxis
+            dataKey={index}
+            tickLine={false}
+            axisLine={false}
+            tickMargin={8}
+            tickFormatter={(value) => value.slice(0, 3)}
+            stroke={textColor}
+          >
+            {xAxisLabel && (
+              <Label value={xAxisLabel} position="insideBottom" offset={-5} style={{ fill: textColor, textAnchor: 'middle' }} />
+            )}
+          </XAxis>
+        )}
+        {showYAxis && (
+          <YAxis
+            tickLine={false}
+            axisLine={false}
+            tickFormatter={valueFormatter}
+            domain={getYAxisDomain()}
+            stroke={textColor}
+          >
+            {yAxisLabel && (
+              <Label value={yAxisLabel} angle={-90} position="insideLeft" style={{ fill: textColor, textAnchor: 'middle' }} />
+            )}
+          </YAxis>
+        )}
+        <ChartTooltip 
+          cursor={false} 
+          content={<ChartTooltipContent indicator="dashed" style={{ backgroundColor: backgroundColor, color: textColor }} />}
+        />
+        {showLegend && <ChartLegend content={<ChartLegendContent />} />}
+        <Line
+          dataKey={categories[0]}
+          type="stepAfter"
+          stroke={colors[0]}
+          strokeWidth={2}
+          dot={false}
+          label={showLabels ? (props: any) => (
+            <CustomLabel
+              {...props}
+              fill={textColor}
+              backgroundColor={backgroundColor}
+              formatter={valueFormatter}
+            />
+          ) : false}
+        />
+      </LineChart>
+    </ChartContainer>
+  )
+}
