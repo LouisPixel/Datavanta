@@ -1,3 +1,4 @@
+import React from "react"
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis, Legend, ResponsiveContainer, LabelList, Label } from "recharts"
 import {
   ChartConfig,
@@ -96,10 +97,22 @@ export function StackedBarChartComp({ data, categories, index, colors, chartColo
             content={<ChartTooltipContent indicator="dashed" style={{ backgroundColor: backgroundColor, color: textColor }} />}
           />
           {showLegend && <Legend wrapperStyle={{ color: textColor }} />}
-          <Bar dataKey={categories[0]} stackId="a" fill={colors[0]}>
+          <Bar
+            {...({
+              dataKey: categories[0],
+              stackId: "a",
+              fill: colors[0],
+            } as unknown as React.ComponentProps<typeof Bar>)}
+          >
             {showLabels && <LabelList dataKey={categories[0]} position="top" fill={textColor} formatter={valueFormatter} />}
           </Bar>
-          <Bar dataKey={categories[1]} stackId="a" fill={colors[1]}>
+          <Bar
+            {...({
+              dataKey: categories[1],
+              stackId: "a",
+              fill: colors[1],
+            } as unknown as React.ComponentProps<typeof Bar>)}
+          >
             {showLabels && <LabelList dataKey={categories[1]} position="top" fill={textColor} formatter={valueFormatter} />}
           </Bar>
         </BarChart>

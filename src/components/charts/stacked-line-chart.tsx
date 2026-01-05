@@ -1,3 +1,4 @@
+import React from "react"
 import { Line, LineChart, CartesianGrid, XAxis, YAxis, Legend, ResponsiveContainer, Label } from "recharts"
 
 interface CustomLabelProps {
@@ -140,39 +141,41 @@ export function StackedLineChartComp({ data, categories, index, colors, chartCol
           content={<ChartTooltipContent indicator="dashed" style={{ backgroundColor: backgroundColor, color: textColor }} />}
           />
           {showLegend && <Legend wrapperStyle={{ color: textColor }} />}
-          {/* @ts-expect-error Recharts Line typings are slightly out of sync with runtime props (stackId, label) */}
           <Line
-            dataKey={categories[0]}
-            type="monotone"
-            stackId="a"
-            stroke={colors[0]}
-            fill={colors[0]}
-            dot={false}
-            label={showLabels ? (props: CustomLabelProps) => (
-              <CustomLabel
-                {...props}
-                fill={textColor}
-                backgroundColor={backgroundColor}
-                formatter={valueFormatter}
-              />
-            ) : false}
+            {...({
+              dataKey: categories[0],
+              type: "monotone",
+              stackId: "a",
+              stroke: colors[0],
+              fill: colors[0],
+              dot: false,
+              label: showLabels ? (props: CustomLabelProps) => (
+                <CustomLabel
+                  {...props}
+                  fill={textColor}
+                  backgroundColor={backgroundColor}
+                  formatter={valueFormatter}
+                />
+              ) : false,
+            } as unknown as React.ComponentProps<typeof Line>)}
           />
-          {/* @ts-expect-error Recharts Line typings are slightly out of sync with runtime props (stackId, label) */}
           <Line
-            dataKey={categories[1]}
-            type="monotone"
-            stackId="a"
-            stroke={colors[1]}
-            fill={colors[1]}
-            dot={false}
-            label={showLabels ? (props: CustomLabelProps) => (
-              <CustomLabel
-                {...props}
-                fill={textColor}
-                backgroundColor={backgroundColor}
-                formatter={valueFormatter}
-              />
-            ) : false}
+            {...({
+              dataKey: categories[1],
+              type: "monotone",
+              stackId: "a",
+              stroke: colors[1],
+              fill: colors[1],
+              dot: false,
+              label: showLabels ? (props: CustomLabelProps) => (
+                <CustomLabel
+                  {...props}
+                  fill={textColor}
+                  backgroundColor={backgroundColor}
+                  formatter={valueFormatter}
+                />
+              ) : false,
+            } as unknown as React.ComponentProps<typeof Line>)}
           />
         </LineChart>
       </ResponsiveContainer>
