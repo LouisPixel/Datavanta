@@ -10,12 +10,7 @@ const skipValidation =
 
 export const env = createEnv({
   server: {
-    // Use z.string() instead of z.string().url() for DATABASE_URL to allow postgresql:// URLs
-    DATABASE_URL: z.string().refine((url) => {
-      return url.startsWith('postgresql://') || url.startsWith('postgres://') || url.startsWith('postgresql+');
-    }, {
-      message: "DATABASE_URL must be a valid PostgreSQL connection string starting with postgresql:// or postgres://"
-    }),
+    DATABASE_URL: z.string().url(),
     BETTER_AUTH_SECRET: z.string().min(1),
     BETTER_AUTH_URL: z.string().url(),
     // Make Google OAuth optional - they might not be set
