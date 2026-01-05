@@ -98,12 +98,14 @@ export const RadialChart: React.FC<RadialChartProps> = ({
         >
           <PolarAngleAxis type="number" domain={[0, 'dataMax'] as [number, string]} angleAxisId={0} tick={false} />
           <RadialBar
-            minAngle={15}
-            label={{ position: 'insideStart', fill: textColor }}
-            background
-            dataKey={category}
-            angleAxisId={0}
-            fill={chartColor}
+            {...({
+              minAngle: 15,
+              label: { position: 'insideStart', fill: textColor },
+              background: true,
+              dataKey: category,
+              angleAxisId: 0,
+              fill: chartColor,
+            } as any)}
           />
           <ChartTooltip
             cursor={false}

@@ -38,20 +38,24 @@ export function RadialChartMultipleValuesComp({ data, chartColor, chartColor2, b
       <ResponsiveContainer width="100%" height={250}>
         <RadialBarChart cx="50%" cy="50%" innerRadius="20%" outerRadius="80%" barSize={10} data={data}>
           <RadialBar
-            minAngle={15}
-            label={{ position: 'insideStart', fill: textColor }}
-            background
-            clockWise
-            dataKey="value"
-            fill={chartColor}
+            {...({
+              minAngle: 15,
+              label: { position: 'insideStart', fill: textColor },
+              background: true,
+              clockWise: true,
+              dataKey: "value",
+              fill: chartColor,
+            } as any)}
           />
           <RadialBar
-            minAngle={15}
-            label={{ position: 'insideStart', fill: textColor }}
-            background
-            clockWise
-            dataKey="value2"
-            fill={chartColor2}
+            {...({
+              minAngle: 15,
+              label: { position: 'insideStart', fill: textColor },
+              background: true,
+              clockWise: true,
+              dataKey: "value2",
+              fill: chartColor2,
+            } as any)}
           />
           <ChartTooltip content={<ChartTooltipContent />} />
           <Legend iconSize={10} layout="vertical" verticalAlign="middle" wrapperStyle={{ top: 0, left: 0, color: textColor }} />
