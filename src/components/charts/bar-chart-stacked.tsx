@@ -1,4 +1,3 @@
-import React from "react"
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis, Legend } from "recharts"
 
 import {
@@ -56,22 +55,10 @@ export function BarChartStackedComp({ data, chartColor, chartColor2, backgroundC
         />
         <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />
         <Legend wrapperStyle={{ color: textColor }} />
-        <Bar
-          {...({
-            dataKey: "value",
-            stackId: "a",
-            fill: chartColor,
-            radius: [8, 8, 0, 0],
-          } as unknown as React.ComponentProps<typeof Bar>)}
-        />
-        <Bar
-          {...({
-            dataKey: "value2",
-            stackId: "a",
-            fill: chartColor2,
-            radius: [0, 0, 8, 8],
-          } as unknown as React.ComponentProps<typeof Bar>)}
-        />
+        {/* @ts-expect-error - Recharts type mismatch with stackId prop */}
+        <Bar dataKey="value" stackId="a" fill={chartColor} radius={[8, 8, 0, 0]} />
+        {/* @ts-expect-error - Recharts type mismatch with stackId prop */}
+        <Bar dataKey="value2" stackId="a" fill={chartColor2} radius={[0, 0, 8, 8]} />
       </BarChart>
     </ChartContainer>
   )

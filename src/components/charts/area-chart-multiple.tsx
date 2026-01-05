@@ -1,4 +1,3 @@
-import React from "react"
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis, Legend } from "recharts"
 
 import {
@@ -63,23 +62,21 @@ export function AreaChartMultipleComp({ data, chartColor, chartColor2, backgroun
         />
         <ChartTooltip cursor={false} content={<ChartTooltipContent indicator="dashed" />} />
         <Legend wrapperStyle={{ color: textColor }} />
+        {/* @ts-expect-error - Recharts type mismatch with stackId prop */}
         <Area
-          {...({
-            dataKey: "value",
-            type: "monotone",
-            fill: chartColor,
-            stroke: chartColor,
-            stackId: "a",
-          } as unknown as React.ComponentProps<typeof Area>)}
+          dataKey="value"
+          type="monotone"
+          fill={chartColor}
+          stroke={chartColor}
+          stackId="a"
         />
+        {/* @ts-expect-error - Recharts type mismatch with stackId prop */}
         <Area
-          {...({
-            dataKey: "value2",
-            type: "monotone",
-            fill: chartColor2,
-            stroke: chartColor2,
-            stackId: "a",
-          } as unknown as React.ComponentProps<typeof Area>)}
+          dataKey="value2"
+          type="monotone"
+          fill={chartColor2}
+          stroke={chartColor2}
+          stackId="a"
         />
       </AreaChart>
     </ChartContainer>

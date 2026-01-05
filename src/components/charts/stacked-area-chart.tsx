@@ -1,4 +1,3 @@
-import React from "react"
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis, Legend, ResponsiveContainer, Label } from "recharts"
 
 interface CustomLabelProps {
@@ -141,39 +140,37 @@ export function StackedAreaChartComp({ data, categories, index, colors, chartCol
             content={<ChartTooltipContent indicator="dashed" style={{ backgroundColor: backgroundColor, color: textColor }} />}
           />
           {showLegend && <Legend wrapperStyle={{ color: textColor }} />}
+          {/* @ts-expect-error - Recharts type mismatch with stackId and label props */}
           <Area
-            {...({
-              dataKey: categories[0],
-              type: "monotone",
-              stackId: "a",
-              fill: colors[0],
-              stroke: colors[0],
-              label: showLabels ? (props: CustomLabelProps) => (
-                <CustomLabel
-                  {...props}
-                  fill={textColor}
-                  backgroundColor={backgroundColor}
-                  formatter={valueFormatter}
-                />
-              ) : false,
-            } as unknown as React.ComponentProps<typeof Area>)}
+            dataKey={categories[0]}
+            type="monotone"
+            stackId="a"
+            fill={colors[0]}
+            stroke={colors[0]}
+            label={showLabels ? (props: CustomLabelProps) => (
+              <CustomLabel
+                {...props}
+                fill={textColor}
+                backgroundColor={backgroundColor}
+                formatter={valueFormatter}
+              />
+            ) : false}
           />
+          {/* @ts-expect-error - Recharts type mismatch with stackId and label props */}
           <Area
-            {...({
-              dataKey: categories[1],
-              type: "monotone",
-              stackId: "a",
-              fill: colors[1],
-              stroke: colors[1],
-              label: showLabels ? (props: CustomLabelProps) => (
-                <CustomLabel
-                  {...props}
-                  fill={textColor}
-                  backgroundColor={backgroundColor}
-                  formatter={valueFormatter}
-                />
-              ) : false,
-            } as unknown as React.ComponentProps<typeof Area>)}
+            dataKey={categories[1]}
+            type="monotone"
+            stackId="a"
+            fill={colors[1]}
+            stroke={colors[1]}
+            label={showLabels ? (props: CustomLabelProps) => (
+              <CustomLabel
+                {...props}
+                fill={textColor}
+                backgroundColor={backgroundColor}
+                formatter={valueFormatter}
+              />
+            ) : false}
           />
         </AreaChart>
       </ResponsiveContainer>
