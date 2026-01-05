@@ -2,11 +2,11 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { forgetPassword } from "@/lib/auth/auth-client";
 
-export default function Page() {
+function ForgotPasswordForm() {
     const params = useSearchParams();
     const emailFromQuery = params.get('email') || "";
     const [email, setEmail] = useState(emailFromQuery);
@@ -47,6 +47,13 @@ export default function Page() {
             </div>
             {message && <p>{message}</p>}
         </form>
+    );
+}
 
+export default function Page() {
+    return (
+        <Suspense fallback={<div className="p-6 max-w-md mx-auto container mt-10">Loading...</div>}>
+            <ForgotPasswordForm />
+        </Suspense>
     );
 }

@@ -5,7 +5,18 @@ import { env } from "../env";
 import { nextCookies } from "better-auth/next-js";
 // If your Prisma file is located elsewhere, you can change the path
 
+// Build a social providers config only if credentials are available
+const socialProviders: { google?: { clientId: string; clientSecret: string } } = {};
+if (env.AUTH_GOOGLE_CLIENT_ID && env.AUTH_GOOGLE_SECRET) {
+    socialProviders.google = {
+        clientId: env.AUTH_GOOGLE_CLIENT_ID,
+        clientSecret: env.AUTH_GOOGLE_SECRET,
+    };
+}
+
 export const auth = betterAuth({
+    secret: env.BETTER_AUTH_SECRET || process.env.BETTER_AUTH_SECRET || "default-secret-change-in-production",
+    baseURL: env.BETTER_AUTH_URL || process.env.BETTER_AUTH_URL,
     database: prismaAdapter(prisma, {
         provider: "postgresql", // or "mysql", "postgresql", ...etc
     }),
@@ -20,12 +31,7 @@ export const auth = betterAuth({
             enabled: true,
         },
     },
-    socialProviders: {
-        google: {
-            clientId: env.AUTH_GOOGLE_CLIENT_ID,
-            clientSecret: env.AUTH_GOOGLE_SECRET,
-        },
-    },
+    ...(Object.keys(socialProviders).length > 0 && { socialProviders }),
 
     plugins: [nextCookies()],
 });

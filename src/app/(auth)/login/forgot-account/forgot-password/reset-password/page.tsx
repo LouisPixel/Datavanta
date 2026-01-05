@@ -3,9 +3,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { resetPassword } from "@/lib/auth/auth-client";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 
-export default function Page() {
+function ResetPasswordForm() {
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
     const searchParams = useSearchParams();
@@ -31,7 +31,7 @@ export default function Page() {
             setMessage("Failed to reset password.");
         } else {
             setMessage("Password reset! you can now sign in.");
-            setTimeout(() => router.push("/loign"), 3000);
+            setTimeout(() => router.push("/login"), 3000);
         }
     };
     return (
@@ -49,5 +49,13 @@ export default function Page() {
             className="w-full p-2 border rounded"/>
             <Button type="submit">Reset Password</Button>
         </form>
+    );
+}
+
+export default function Page() {
+    return (
+        <Suspense fallback={<div className="p-6 max-w-md mx-auto container mt-10">Loading...</div>}>
+            <ResetPasswordForm />
+        </Suspense>
     );
 }
