@@ -57,7 +57,7 @@ export function PieChartComp({ data, category, index, colors, chartColor, backgr
             ))}
           </Pie>
           <ChartTooltip 
-            content={<ChartTooltipContent formatter={valueFormatter} />}
+            content={<ChartTooltipContent formatter={(value) => typeof value === 'number' ? valueFormatter(value) : String(value)} />}
             contentStyle={{ backgroundColor: backgroundColor, color: textColor }}
             itemStyle={{ color: textColor }}
           />

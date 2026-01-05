@@ -55,7 +55,7 @@ export function DonutChartComp({ data, category, index, colors, chartColor, back
             ))}
           </Pie>
           <ChartTooltip 
-            content={<ChartTooltipContent formatter={valueFormatter} />}
+            content={<ChartTooltipContent formatter={(value) => typeof value === 'number' ? valueFormatter(value) : String(value)} />}
             contentStyle={{ backgroundColor: backgroundColor, color: textColor }}
             itemStyle={{ color: textColor }}
           />
