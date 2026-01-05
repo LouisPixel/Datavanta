@@ -4,7 +4,6 @@ import CallToAction from "@/sections/CallToAction";
 import FeaturesSection1 from "@/components/features-5";
 import FeaturesSection2 from "@/components/features-6";
 import FooterSection from "@/components/footer";
-import TestimonialSection from "@/sections/Testimonials";
 import { Preview } from "@/sections/Images";
 import { NewHeader } from "@/components/header-2";
 
@@ -25,7 +24,7 @@ export default function Home() {
      <Preview/>
      
 
-     <TestimonialSection />
+
      <CallToAction />
      <FooterSection />
 

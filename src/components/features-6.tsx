@@ -5,7 +5,7 @@ import GraphExample from '@/assets/images/GraphDashboard2.png';
 
 export default function FeaturesSection2() {
     return (
-     <section className="relative py-24 md:py-48 overflow-hidden bg-[#070707] text-foreground">
+     <section className="relative py-24 md:py-48 overflow-hidden bg-[#070707] text-foreground z-20">
             <div className="container max-w-[1220px] w-full px-6 md:px-10 relative z-10 mx-auto">
                 
                 <div className="relative z-10 grid items-center gap-4 md:grid-cols-2 md:gap-12 mb-5">

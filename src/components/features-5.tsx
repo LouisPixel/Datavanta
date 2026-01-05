@@ -33,9 +33,17 @@ export default function FeaturesSection1() {
                         </ul>
                     </div>
                     <div className="border-border/80 relative rounded-3xl border p-3 lg:col-span-3">
-                        <div className="bg-linear-to-b aspect-76/59 relative rounded-2xl from-zinc-300 to-transparent p-px dark:from-zinc-700">
-                            <Image src={Dashboard} className="hidden rounded-[15px] dark:block" alt="payments illustration dark" width={1207} height={929} />
-                            <Image src="/payments-light.png" className="rounded-[15px] shadow dark:hidden" alt="payments illustration light" width={1207} height={929} />
+                        <div className="bg-gradient-to-b aspect-76/59 relative rounded-2xl from-zinc-700 to-transparent p-px">
+                            <div className="relative rounded-[15px] overflow-hidden w-full h-full">
+                                <Image 
+                                    src={Dashboard} 
+                                    className="rounded-[15px] shadow w-full h-auto object-cover" 
+                                    alt="Datavanta dashboard illustration" 
+                                    width={1207} 
+                                    height={929}
+                                    priority
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>

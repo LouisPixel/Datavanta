@@ -36,30 +36,32 @@ const Preview = () => {
   }, [animate])
 
   return (
-    <div
-      className="relative flex w-full h-full min-h-screen py-16 mb-24 justify-center items-center overflow-hidden bg-[#070707]"
+    <section
+      className="relative w-full min-h-screen py-16 mb-24 bg-[#070707] isolate"
       ref={scope}
     >
-      <motion.div
-        className="z-10 text-center space-y-4 items-center flex flex-col"
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.88, delay: 1.5 }}
-      >
-        <p className="text-5xl md:text-7xl text-white font-calendas font-bold">
-          Our beautiful graphs
-        </p>
-        <p className="text-sm md:text-base text-white/70 max-w-2xl px-4">
-          Discover stunning graphs and charts that Datavanta can create. Transform your data into visually captivating and insightful visualizations that tell your story with clarity and elegance.
-        </p>
-        <Link href="/graphs">
-          <Button className="mt-4 bg-white text-black hover:bg-white/90">
-            Check out our graphs
-          </Button>
-        </Link>
-      </motion.div>
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-[calc(100vh-8rem)]">
+        <motion.div
+          className="z-20 text-center space-y-4 items-center flex flex-col relative"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.88, delay: 1.5 }}
+        >
+          <p className="text-5xl md:text-7xl text-white font-calendas font-bold">
+            Our beautiful graphs
+          </p>
+          <p className="text-sm md:text-base text-white/70 max-w-2xl px-4">
+            Discover stunning graphs and charts that Datavanta can create. Transform your data into visually captivating and insightful visualizations that tell your story with clarity and elegance.
+          </p>
+          <Link href="/graphs">
+            <Button className="mt-4 bg-white text-black hover:bg-white/90">
+              Check out our graphs
+            </Button>
+          </Link>
+        </motion.div>
+      </div>
 
-      <Floating sensitivity={-1} className="overflow-hidden">
+      <Floating sensitivity={-1} className="overflow-hidden pointer-events-none">
         <FloatingElement depth={0.5} className="top-[8%] left-[11%]">
           <motion.img
             initial={{ opacity: 0 }}
@@ -119,7 +121,7 @@ const Preview = () => {
           />
         </FloatingElement>
       </Floating>
-    </div>
+    </section>
   )
 }
 
