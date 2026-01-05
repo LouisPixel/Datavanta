@@ -4,7 +4,9 @@ import Image from "next/image";
 import { TextEffect } from '@/components/ui/text-effect'
 import { AnimatedGroup } from '@/components/ui/animated-group'
 
-const transitionVariants = {
+import { Variants } from 'motion/react';
+
+const transitionVariants: { item: Variants } = {
     item: {
         hidden: {
             opacity: 0,
@@ -16,7 +18,7 @@ const transitionVariants = {
             filter: 'blur(0px)',
             y: 0,
             transition: {
-                type: 'spring',
+                type: 'spring' as const,
                 bounce: 0.3,
                 duration: 1.5,
             },
@@ -53,12 +55,12 @@ export default function Hero() {
                                 transition: {
                                     staggerChildren: 0.05,
                                     delayChildren: 0.75,
-                                                },
-                                            },
-                                        },
-                                    ...transitionVariants,
-                                    }}
-                                    >
+                                },
+                            },
+                        },
+                        item: transitionVariants.item,
+                    }}
+                    >
                 <Image src={ProductImage} alt="Product Image" className="min-w-[750px]" />     
              </AnimatedGroup>
         </div>
