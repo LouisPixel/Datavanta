@@ -5,7 +5,6 @@ import {
   ResponsiveContainer,
   Scatter,
   ScatterChart as RechartsScatterChart,
-  Tooltip,
   XAxis,
   YAxis,
   Legend
@@ -45,7 +44,6 @@ const chartConfig: ChartConfig = {
 }
 
 export const ScatterPlotChart: React.FC<ScatterPlotChartProps> = ({
-  data,
   categories,
   index,
   colors,

@@ -1,19 +1,6 @@
 "use client";
 
-import React from 'react';
 import { useTheme as useNextTheme } from 'next-themes';
-
-interface ThemeClasses {
-    bg: string;
-    text: string;
-    border: string;
-    hoverBg: string;
-    activeBg: string;
-    ring: string;
-    fill: string;
-    stroke: string;
-    buttonPrimary: string;
-}
 
 // No longer creating a separate context here
 

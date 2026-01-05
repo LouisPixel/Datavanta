@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { motion } from "framer-motion";
-import { Sun, Moon } from 'lucide-react';
 
 // --- Types ---
 interface Testimonial {
@@ -191,7 +190,7 @@ const TestimonialsSection = () => {
 
 // --- Main App Component ---
 export default function App() {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark] = useState(false);
 
   useEffect(() => {
     if (isDark) {

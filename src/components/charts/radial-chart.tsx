@@ -37,11 +37,8 @@ const chartConfig: ChartConfig = {
 export const RadialChart: React.FC<RadialChartProps> = ({
   data,
   category,
-  index,
-  colors,
   chartColor,
   backgroundColor,
-  gridColor,
   textColor,
   valueFormatter,
   showLegend = false,
@@ -54,7 +51,13 @@ export const RadialChart: React.FC<RadialChartProps> = ({
   }), [chartColor, legendLabel]);
 
   // Custom legend content that shows only one item
-  const CustomLegendContent = React.useCallback((props: any) => {
+  interface CustomLegendProps {
+    payload?: Array<{
+      value?: string;
+      color?: string;
+    }>;
+  }
+  const CustomLegendContent = React.useCallback((props: CustomLegendProps) => {
     if (!props?.payload || props.payload.length === 0) return null;
     
     const itemConfig = updatedChartConfig[category as keyof typeof updatedChartConfig] || updatedChartConfig.value;
