@@ -250,7 +250,7 @@ export default function GraphsPage() {
                 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {category.charts.map((chart, chartIndex) => {
-                    const ChartComponent = chart.component as React.ComponentType<Record<string, unknown>>;
+                    const ChartComponent = chart.component as unknown as React.ComponentType<Record<string, unknown>>;
                     type ChartDataItem = {
                       label: string;
                       value: number;
