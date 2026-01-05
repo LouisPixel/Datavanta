@@ -3,7 +3,6 @@
 import { useEffect } from "react"
 import { motion, stagger, useAnimate } from "motion/react"
 import Link from "next/link"
-import Image from "next/image"
 import Graph1 from '@/assets/images/Graph1.png';
 import Graph2 from '@/assets/images/Graph2.png';
 import Graph3 from '@/assets/images/Graph3.png';
@@ -34,7 +33,7 @@ const Preview = () => {
 
   useEffect(() => {
     animate("img", { opacity: [0, 1] }, { duration: 0.5, delay: stagger(0.15) })
-  }, [])
+  }, [animate])
 
   return (
     <div

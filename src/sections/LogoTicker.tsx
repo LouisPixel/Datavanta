@@ -10,7 +10,6 @@ import twiceLogo from "@/assets/images/twice.svg";
 import Image from "next/image"
 import { Fragment } from "react";
 import { motion } from "framer-motion";
-import { linearGradient } from "framer-motion/client";
 
 const logos = [
     { name: "Quantum", image: quantumLogo },

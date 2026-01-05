@@ -1,6 +1,6 @@
 import React from 'react';
 import { DataPoint, Project } from '@/interfaces/data';
-import { toast } from 'sonner'; // Assuming toast is from sonner
+import type { toast as ToastType } from 'sonner';
 
 export const createProject = (
     newProject: { name: string; description: string; },
@@ -11,7 +11,7 @@ export const createProject = (
     COLORS: string[],
     sessionUserId: string | undefined
 ) => {
-    let newPoints: DataPoint[] = [];
+    const newPoints: DataPoint[] = [];
     let parsedHeaders: string[] = [];
     let parsedRows: string[][] = [];
 
@@ -246,7 +246,7 @@ export const handlePasteData = (
     setValueColumnIndex: React.Dispatch<React.SetStateAction<number | null>>,
     setShowPasteDataModal: React.Dispatch<React.SetStateAction<boolean>>,
     setPastedData: React.Dispatch<React.SetStateAction<string>>,
-    toast: any // Assuming toast is from sonner and needs to be passed
+    toast: typeof ToastType
 ) => {
     if (!pastedData.trim()) {
         toast.error("No data to paste.");
