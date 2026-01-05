@@ -10,8 +10,6 @@ export { PieChartComp as PieChart } from './pie-chart';
 export { DonutChartComp as DonutChart } from './donut-chart';
 export { StackedAreaChartComp as StackedAreaChart } from './stacked-area-chart';
 export { StackedBarChartComp as StackedBarChart } from './stacked-bar-chart';
-export { StackedLineChartComp as StackedLineChart } from './stacked-line-chart';
-export { StackedLineDotsChartComp as StackedLineDotsChart } from './stacked-line-dots-chart';
 export { RadarChart } from './radar-chart';
 export { RadarLinesChart } from './radar-lines-chart';
 export { RadarDotsChart } from './radar-dots-chart';

@@ -15,8 +15,6 @@ import {
   AreaGradientChart,
   StackedBarChart,
   StackedAreaChart,
-  StackedLineChart,
-  StackedLineDotsChart,
   RadarChart,
   RadarLinesChart,
   RadarDotsChart,
@@ -112,20 +110,6 @@ const chartCategories = [
         description: 'Show discrete changes between values',
         component: LineStepChart,
         data: sampleData.line,
-      },
-      {
-        type: 'stacked-line',
-        title: 'Stacked Line Chart',
-        description: 'Compare multiple series over time',
-        component: StackedLineChart,
-        data: sampleData.stacked,
-      },
-      {
-        type: 'stacked-line-dots',
-        title: 'Stacked Line with Dots',
-        description: 'Stacked lines with highlighted points',
-        component: StackedLineDotsChart,
-        data: sampleData.stacked,
       },
     ],
   },
@@ -265,7 +249,7 @@ export default function GraphsPage() {
                       color: item.color,
                     }));
 
-                    const isStacked = chart.type === 'stacked-bar' || chart.type === 'stacked-area' || chart.type === 'stacked-line' || chart.type === 'stacked-line-dots';
+                    const isStacked = chart.type === 'stacked-bar' || chart.type === 'stacked-area';
                     const isPie = chart.type === 'pie' || chart.type === 'donut';
 
                     return (

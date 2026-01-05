@@ -30,8 +30,6 @@ import {
   AreaGradientChart,
   StackedBarChart, 
   StackedAreaChart, 
-  StackedLineChart,
-  StackedLineDotsChart,
   RadarChart,
   RadarLinesChart,
   RadarDotsChart
@@ -61,8 +59,6 @@ const chartCategories: ChartCategory[] = [
             { type: 'line', label: 'Linear', icon: LineChartIcon },
             { type: 'line-dots', label: 'With Dots', icon: TrendingUp },
             { type: 'line-step', label: 'Step', icon: LineChartIcon },
-            { type: 'stacked-line', label: 'Stacked Line', icon: LineChartIcon },
-            { type: 'stacked-line-dots', label: 'Stacked Line with Dots', icon: LineChartIcon },
         ],
     },
     {
@@ -92,7 +88,7 @@ const chartCategories: ChartCategory[] = [
 ];
 
 const isStackedChart = (chartType: Project['chartType']): boolean => {
-    return ['stacked-bar', 'stacked-area', 'stacked-line', 'stacked-line-dots'].includes(chartType);
+    return ['stacked-bar', 'stacked-area'].includes(chartType);
 };
 
 
@@ -133,10 +129,6 @@ const renderChart = ({ project, chartRef, chartData, valueFormatter }: { project
                         return <LineDotsChart data={chartData as ({ label: string; value: number; })[]} categories={['value']} index="label" colors={[project.chartColor]} chartColor={project.chartColor} backgroundColor={project.backgroundColor} gridColor={project.gridColor} textColor={project.textColor} valueFormatter={valueFormatter} showLegend={showLegend} legendLabel={legendLabel} showXAxis={showXAxis} showYAxis={showYAxis} xAxisLabel={xAxisLabel} yAxisLabel={yAxisLabel} yAxisMin={yAxisMin} yAxisMax={yAxisMax} showLabels={showLabels} mt="h-full" />;
                     case 'line-step':
                         return <LineStepChart data={chartData as ({ label: string; value: number; })[]} categories={['value']} index="label" colors={[project.chartColor]} chartColor={project.chartColor} backgroundColor={project.backgroundColor} gridColor={project.gridColor} textColor={project.textColor} valueFormatter={valueFormatter} showLegend={showLegend} legendLabel={legendLabel} showXAxis={showXAxis} showYAxis={showYAxis} xAxisLabel={xAxisLabel} yAxisLabel={yAxisLabel} yAxisMin={yAxisMin} yAxisMax={yAxisMax} showLabels={showLabels} mt="h-full" />;
-                    case 'stacked-line':
-                        return <StackedLineChart data={chartData as ({ label: string; value: number; value2: number; })[]} categories={['value', 'value2']} index="label" colors={[project.chartColor, project.chartColor2 || COLORS[1]]} chartColor={project.chartColor} chartColor2={project.chartColor2 || COLORS[1]} backgroundColor={project.backgroundColor} gridColor={project.gridColor} textColor={project.textColor} valueFormatter={valueFormatter} showLegend={showLegend} legendLabel={legendLabel} legendLabel2={legendLabel2} showXAxis={showXAxis} showYAxis={showYAxis} xAxisLabel={xAxisLabel} yAxisLabel={yAxisLabel} yAxisMin={yAxisMin} yAxisMax={yAxisMax} showLabels={showLabels} mt="h-full" />;
-                    case 'stacked-line-dots':
-                        return <StackedLineDotsChart data={chartData as ({ label: string; value: number; value2: number; })[]} categories={['value', 'value2']} index="label" colors={[project.chartColor, project.chartColor2 || COLORS[1]]} chartColor={project.chartColor} chartColor2={project.chartColor2 || COLORS[1]} backgroundColor={project.backgroundColor} gridColor={project.gridColor} textColor={project.textColor} valueFormatter={valueFormatter} showLegend={showLegend} legendLabel={legendLabel} legendLabel2={legendLabel2} showXAxis={showXAxis} showYAxis={showYAxis} xAxisLabel={xAxisLabel} yAxisLabel={yAxisLabel} yAxisMin={yAxisMin} yAxisMax={yAxisMax} showLabels={showLabels} mt="h-full" />;
                     case 'area':
                         return <AreaChart data={chartData as ({ label: string; value: number; })[]} categories={['value']} index="label" colors={[project.chartColor]} chartColor={project.chartColor} backgroundColor={project.backgroundColor} gridColor={project.gridColor} textColor={project.textColor} valueFormatter={valueFormatter} showLegend={showLegend} legendLabel={legendLabel} showXAxis={showXAxis} showYAxis={showYAxis} xAxisLabel={xAxisLabel} yAxisLabel={yAxisLabel} yAxisMin={yAxisMin} yAxisMax={yAxisMax} showLabels={showLabels} mt="h-full" />;
                     case 'area-step':
