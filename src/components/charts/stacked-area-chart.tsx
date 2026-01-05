@@ -140,7 +140,6 @@ export function StackedAreaChartComp({ data, categories, index, colors, chartCol
             content={<ChartTooltipContent indicator="dashed" style={{ backgroundColor: backgroundColor, color: textColor }} />}
           />
           {showLegend && <Legend wrapperStyle={{ color: textColor }} />}
-          {/* @ts-expect-error - Recharts type mismatch with stackId and label props */}
           <Area
             dataKey={categories[0]}
             type="monotone"
@@ -156,7 +155,6 @@ export function StackedAreaChartComp({ data, categories, index, colors, chartCol
               />
             ) : false}
           />
-          {/* @ts-expect-error - Recharts type mismatch with stackId and label props */}
           <Area
             dataKey={categories[1]}
             type="monotone"

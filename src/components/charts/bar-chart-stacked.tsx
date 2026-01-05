@@ -55,9 +55,7 @@ export function BarChartStackedComp({ data, chartColor, chartColor2, backgroundC
         />
         <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />
         <Legend wrapperStyle={{ color: textColor }} />
-        {/* @ts-expect-error - Recharts type mismatch with stackId prop */}
         <Bar dataKey="value" stackId="a" fill={chartColor} radius={[8, 8, 0, 0]} />
-        {/* @ts-expect-error - Recharts type mismatch with stackId prop */}
         <Bar dataKey="value2" stackId="a" fill={chartColor2} radius={[0, 0, 8, 8]} />
       </BarChart>
     </ChartContainer>

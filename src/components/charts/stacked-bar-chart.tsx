@@ -96,11 +96,9 @@ export function StackedBarChartComp({ data, categories, index, colors, chartColo
             content={<ChartTooltipContent indicator="dashed" style={{ backgroundColor: backgroundColor, color: textColor }} />}
           />
           {showLegend && <Legend wrapperStyle={{ color: textColor }} />}
-          {/* @ts-expect-error - Recharts type mismatch with stackId prop */}
           <Bar dataKey={categories[0]} stackId="a" fill={colors[0]}>
             {showLabels && <LabelList dataKey={categories[0]} position="top" fill={textColor} formatter={valueFormatter} />}
           </Bar>
-          {/* @ts-expect-error - Recharts type mismatch with stackId prop */}
           <Bar dataKey={categories[1]} stackId="a" fill={colors[1]}>
             {showLabels && <LabelList dataKey={categories[1]} position="top" fill={textColor} formatter={valueFormatter} />}
           </Bar>
