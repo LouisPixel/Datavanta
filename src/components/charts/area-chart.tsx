@@ -76,18 +76,18 @@ const chartConfig: ChartConfig = {
 export function AreaChartComp({ data, categories, index, colors, chartColor, backgroundColor, gridColor, textColor, valueFormatter, showLegend = false, legendLabel = 'Value', showXAxis = true, showYAxis = true, xAxisLabel, yAxisLabel, yAxisMin, yAxisMax, showLabels = false, mt }: AreaChartCompProps) {
   const updatedChartConfig: ChartConfig = {
     ...chartConfig,
-    value: { ...chartConfig.value, color: chartColor, label: legendLabel },
+    value: { label: legendLabel, color: chartColor },
   };
 
   const getYAxisDomain = () => {
     if (yAxisMin !== undefined && yAxisMax !== undefined) {
-      return [yAxisMin, yAxisMax];
+      return [yAxisMin, yAxisMax] as [number, number];
     } else if (yAxisMin !== undefined) {
-      return [yAxisMin, 'dataMax'];
+      return [yAxisMin, 'dataMax' as const];
     } else if (yAxisMax !== undefined) {
-      return [0, yAxisMax];
+      return [0, yAxisMax] as [number, number];
     }
-    return [0, 'dataMax'];
+    return [0, 'dataMax' as const] as const;
   };
 
   const getBaseValue = () => {

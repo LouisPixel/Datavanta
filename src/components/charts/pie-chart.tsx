@@ -33,7 +33,7 @@ const chartConfig: ChartConfig = {
 export function PieChartComp({ data, category, index, colors, chartColor, backgroundColor, textColor, valueFormatter, showLegend = false, legendLabel = 'Value', mt }: PieChartCompProps) {
   const updatedChartConfig: ChartConfig = {
     ...chartConfig,
-    value: { ...chartConfig.value, color: chartColor, label: legendLabel },
+    value: { label: legendLabel, color: chartColor },
   };
 
   // Remove local COLORS definition

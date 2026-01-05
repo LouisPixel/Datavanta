@@ -43,7 +43,7 @@ const chartConfig: ChartConfig = {
 export function BarChartHorizontalComp({ data, categories, index, colors, chartColor, backgroundColor, gridColor, textColor, valueFormatter, showLegend = false, legendLabel = 'Value', showXAxis = true, showYAxis = true, xAxisLabel, yAxisLabel, yAxisMin, yAxisMax, showLabels = false, mt }: BarChartHorizontalCompProps) {
   const updatedChartConfig: ChartConfig = {
     ...chartConfig,
-    value: { ...chartConfig.value, color: chartColor, label: legendLabel },
+    value: { label: legendLabel, color: chartColor },
   };
 
   const getXAxisDomain = () => {

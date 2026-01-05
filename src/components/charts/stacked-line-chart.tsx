@@ -79,8 +79,8 @@ const chartConfig: ChartConfig = {
 export function StackedLineChartComp({ data, categories, index, colors, chartColor, chartColor2, backgroundColor, gridColor, textColor, valueFormatter, showLegend = false, legendLabel = 'Value', legendLabel2 = 'Value 2', showXAxis = true, showYAxis = true, xAxisLabel, yAxisLabel, yAxisMin, yAxisMax, showLabels = false, mt }: StackedLineChartCompProps) {
   const updatedChartConfig: ChartConfig = {
     ...chartConfig,
-    value: { ...chartConfig.value, color: chartColor, label: legendLabel },
-    value2: { ...chartConfig.value2, color: chartColor2, label: legendLabel2 },
+    value: { label: legendLabel, color: chartColor },
+    value2: { label: legendLabel2, color: chartColor2 },
   };
 
   const getYAxisDomain = () => {

@@ -279,22 +279,45 @@ export default function GraphsPage() {
                           </div>
                           
                           <div className="relative h-64 w-full bg-transparent rounded-lg overflow-hidden">
-                            <ChartComponent
-                              data={chartData}
-                              categories={isStacked ? ['value', 'value2'] : ['value']}
-                              index="label"
-                              colors={isPie ? chartData.map((d: any) => d.color || '#9B99FE') : ['#9B99FE']}
-                              chartColor="#9B99FE"
-                              chartColor2="#2BC8B7"
-                              backgroundColor="transparent"
-                              gridColor="rgba(255, 255, 255, 0.1)"
-                              textColor="rgba(255, 255, 255, 0.8)"
-                              valueFormatter={(value: number) => `${value}`}
-                              showLegend={false}
-                              showXAxis={true}
-                              showYAxis={true}
-                              mt="h-full"
-                            />
+                            {isPie ? (
+                              <ChartComponent
+                                {...({
+                                  data: chartData,
+                                  category: "value",
+                                  index: "label",
+                                  colors: chartData.map((d: any) => d.color || '#9B99FE'),
+                                  chartColor: "#9B99FE",
+                                  chartColor2: "#2BC8B7",
+                                  backgroundColor: "transparent",
+                                  gridColor: "rgba(255, 255, 255, 0.1)",
+                                  textColor: "rgba(255, 255, 255, 0.8)",
+                                  valueFormatter: (value: number) => `${value}`,
+                                  showLegend: false,
+                                  showXAxis: true,
+                                  showYAxis: true,
+                                  mt: "h-full"
+                                } as any)}
+                              />
+                            ) : (
+                              <ChartComponent
+                                {...({
+                                  data: chartData,
+                                  categories: isStacked ? ['value', 'value2'] : ['value'],
+                                  index: "label",
+                                  colors: ['#9B99FE'],
+                                  chartColor: "#9B99FE",
+                                  chartColor2: "#2BC8B7",
+                                  backgroundColor: "transparent",
+                                  gridColor: "rgba(255, 255, 255, 0.1)",
+                                  textColor: "rgba(255, 255, 255, 0.8)",
+                                  valueFormatter: (value: number) => `${value}`,
+                                  showLegend: false,
+                                  showXAxis: true,
+                                  showYAxis: true,
+                                  mt: "h-full"
+                                } as any)}
+                              />
+                            )}
                           </div>
                         </div>
                       </div>

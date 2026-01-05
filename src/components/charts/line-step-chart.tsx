@@ -76,7 +76,7 @@ const chartConfig: ChartConfig = {
 export function LineStepChartComp({ data, categories, index, colors, chartColor, backgroundColor, gridColor, textColor, valueFormatter, showLegend = false, legendLabel = 'Value', showXAxis = true, showYAxis = true, xAxisLabel, yAxisLabel, yAxisMin, yAxisMax, showLabels = false, mt }: LineStepChartCompProps) {
   const updatedChartConfig: ChartConfig = {
     ...chartConfig,
-    value: { ...chartConfig.value, color: chartColor, label: legendLabel },
+    value: { label: legendLabel, color: chartColor },
   };
 
   const getYAxisDomain = () => {

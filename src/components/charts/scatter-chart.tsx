@@ -59,8 +59,8 @@ export const ScatterPlotChart: React.FC<ScatterPlotChartProps> = ({
 }) => {
   const updatedChartConfig: ChartConfig = useMemo(() => ({
     ...chartConfig,
-    value: { ...chartConfig.value, color: chartColor },
-    ...(chartColor2 && { value2: { ...chartConfig.value2, color: chartColor2 } }),
+    value: { label: chartConfig.value?.label || "Value", color: chartColor },
+    ...(chartColor2 && { value2: { label: chartConfig.value2?.label || "Value 2", color: chartColor2 } }),
   }), [chartColor, chartColor2]);
 
   return (

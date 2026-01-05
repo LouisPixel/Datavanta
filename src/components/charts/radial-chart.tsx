@@ -50,7 +50,7 @@ export const RadialChart: React.FC<RadialChartProps> = ({
 }) => {
   const updatedChartConfig: ChartConfig = useMemo(() => ({
     ...chartConfig,
-    value: { ...chartConfig.value, color: chartColor, label: legendLabel },
+    value: { label: legendLabel, color: chartColor },
   }), [chartColor, legendLabel]);
 
   // Custom legend content that shows only one item

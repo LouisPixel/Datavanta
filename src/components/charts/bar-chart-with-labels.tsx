@@ -27,7 +27,7 @@ const chartConfig: ChartConfig = {
 export function BarChartWithLabelsComp({ data, chartColor, backgroundColor, gridColor, textColor }: BarChartWithLabelsCompProps) {
   const updatedChartConfig: ChartConfig = {
     ...chartConfig,
-    value: { ...chartConfig.value, color: chartColor },
+    value: { label: chartConfig.value?.label || "Value", color: chartColor },
   };
 
   return (

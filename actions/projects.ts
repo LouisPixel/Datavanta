@@ -1,18 +1,22 @@
 "use server"
 
 import { auth } from "@/lib/auth/auth"
-import { PrismaClient } from "@prisma/client"
+import { prisma } from "@/lib/db"
+import { headers } from "next/headers"
 
 export const getAllProjects = async () => {
 
     try{
-          const session = await auth.api.getSession()
+          const headersList = await headers()
+          const session = await auth.api.getSession({
+            headers: headersList
+          })
         
           if (!session) {
             return { status: 403, error: "User not authenticated"}
           }
 
-          const projects = await PrismaClient.project.findMany({
+          const projects = await prisma.project.findMany({
             where: {
                 userId: session.user.id,
                 isDeleted: false,

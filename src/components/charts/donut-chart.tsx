@@ -33,7 +33,7 @@ const chartConfig: ChartConfig = {
 export function DonutChartComp({ data, category, index, colors, chartColor, backgroundColor, textColor, valueFormatter, showLegend = false, legendLabel = 'Value', mt }: DonutChartCompProps) {
   const updatedChartConfig: ChartConfig = {
     ...chartConfig,
-    value: { ...chartConfig.value, color: chartColor, label: legendLabel },
+    value: { label: legendLabel, color: chartColor },
   };
 
   return (

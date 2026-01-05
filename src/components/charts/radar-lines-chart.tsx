@@ -65,8 +65,8 @@ export const RadarLinesChart: React.FC<RadarLinesChartProps> = ({
 }) => {
   const updatedChartConfig: ChartConfig = useMemo(() => ({
     ...chartConfig,
-    value: { ...chartConfig.value, color: chartColor, label: legendLabel },
-    ...(chartColor2 && { value2: { ...chartConfig.value2, color: chartColor2, label: legendLabel2 } }),
+    value: { label: legendLabel, color: chartColor },
+    ...(chartColor2 && { value2: { label: legendLabel2, color: chartColor2 } }),
   }), [chartColor, chartColor2, legendLabel, legendLabel2]);
 
   return (

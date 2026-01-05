@@ -30,8 +30,8 @@ const chartConfig: ChartConfig = {
 export function AreaChartMultipleComp({ data, chartColor, chartColor2, backgroundColor, gridColor, textColor }: AreaChartMultipleCompProps) {
   const updatedChartConfig: ChartConfig = {
     ...chartConfig,
-    value: { ...chartConfig.value, color: chartColor },
-    value2: { ...chartConfig.value2, color: chartColor2 },
+    value: { label: chartConfig.value?.label || "Value 1", color: chartColor },
+    value2: { label: chartConfig.value2?.label || "Value 2", color: chartColor2 },
   };
 
   return (

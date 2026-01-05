@@ -26,7 +26,7 @@ const chartConfig: ChartConfig = {
 export function LineChartLinearComp({ data, chartColor, backgroundColor, gridColor }: LineChartLinearCompProps) {
   const updatedChartConfig: ChartConfig = {
     ...chartConfig,
-    value: { ...chartConfig.value, color: chartColor },
+    value: { label: chartConfig.value?.label || "Value", color: chartColor },
   };
 
   return (
