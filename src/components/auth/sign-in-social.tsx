@@ -22,12 +22,19 @@ export default function SignInSocial({
             // If we get a result (not a redirect), check for errors
             if (result && 'error' in result) {
                 console.error("Sign in error:", result.error);
-                toast.error(`Failed to sign in: ${result.error?.message || 'Google authentication is not configured. Please set AUTH_GOOGLE_CLIENT_ID and AUTH_GOOGLE_SECRET in your environment variables.'}`);
+                const errorMsg = result.error?.message || 'Google authentication failed';
+                toast.error(`Failed to sign in: ${errorMsg}`);
             }
         } catch (error) {
             console.error("Error initiating Google sign in:", error);
             const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-            toast.error(`Failed to sign in with Google: ${errorMessage}. Make sure Google OAuth is configured in your environment variables.`);
+            
+            // Check if it's a configuration error
+            if (errorMessage.includes('not configured') || errorMessage.includes('missing')) {
+                toast.error('Google OAuth is not configured. Please check your environment variables in Netlify: AUTH_GOOGLE_CLIENT_ID and AUTH_GOOGLE_SECRET');
+            } else {
+                toast.error(`Failed to sign in with Google: ${errorMessage}`);
+            }
         }
     };
 

@@ -13,8 +13,9 @@ export const env = createEnv({
     DATABASE_URL: z.string().url(),
     BETTER_AUTH_SECRET: z.string().min(1),
     BETTER_AUTH_URL: z.string().url(),
-    AUTH_GOOGLE_CLIENT_ID: z.string().min(1),
-    AUTH_GOOGLE_SECRET: z.string().min(1),
+    // Make Google OAuth optional - they might not be set
+    AUTH_GOOGLE_CLIENT_ID: z.string().min(1).optional(),
+    AUTH_GOOGLE_SECRET: z.string().min(1).optional(),
   },
   runtimeEnv: {
     DATABASE_URL: process.env.DATABASE_URL,
