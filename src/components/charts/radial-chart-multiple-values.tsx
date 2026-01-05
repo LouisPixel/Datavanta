@@ -1,3 +1,4 @@
+import React from "react"
 import { RadialBar, RadialBarChart, ResponsiveContainer, Legend } from "recharts"
 
 import {
@@ -45,7 +46,7 @@ export function RadialChartMultipleValuesComp({ data, chartColor, chartColor2, b
               clockWise: true,
               dataKey: "value",
               fill: chartColor,
-            } as Record<string, unknown>)}
+            } as unknown as React.ComponentProps<typeof RadialBar>)}
           />
           <RadialBar
             {...({
@@ -55,7 +56,7 @@ export function RadialChartMultipleValuesComp({ data, chartColor, chartColor2, b
               clockWise: true,
               dataKey: "value2",
               fill: chartColor2,
-            } as Record<string, unknown>)}
+            } as unknown as React.ComponentProps<typeof RadialBar>)}
           />
           <ChartTooltip content={<ChartTooltipContent />} />
           <Legend iconSize={10} layout="vertical" verticalAlign="middle" wrapperStyle={{ top: 0, left: 0, color: textColor }} />

@@ -105,7 +105,7 @@ export const RadialChart: React.FC<RadialChartProps> = ({
               dataKey: category,
               angleAxisId: 0,
               fill: chartColor,
-            } as Record<string, unknown>)}
+            } as unknown as React.ComponentProps<typeof RadialBar>)}
           />
           <ChartTooltip
             cursor={false}
