@@ -142,40 +142,36 @@ export function StackedLineDotsChartComp({ data, categories, index, colors, char
           />
           {showLegend && <Legend wrapperStyle={{ color: textColor }} />}
           <Line
-            {...({
-              dataKey: categories[0],
-              type: "monotone",
-              stackId: "a",
-              stroke: colors[0],
-              fill: colors[0],
-              dot: { fill: colors[0], stroke: colors[0], strokeWidth: 2, r: 4 },
-              label: showLabels ? (props: CustomLabelProps) => (
-                <CustomLabel
-                  {...props}
-                  fill={textColor}
-                  backgroundColor={backgroundColor}
-                  formatter={valueFormatter}
-                />
-              ) : false,
-            } as unknown as React.ComponentProps<typeof Line>)}
+            dataKey={categories[0]}
+            type="monotone"
+            stackId="a"
+            stroke={colors[0]}
+            fill={colors[0]}
+            dot={{ fill: colors[0], stroke: colors[0], strokeWidth: 2, r: 4 }}
+            label={showLabels ? (props: CustomLabelProps) => (
+              <CustomLabel
+                {...props}
+                fill={textColor}
+                backgroundColor={backgroundColor}
+                formatter={valueFormatter}
+              />
+            ) : false}
           />
           <Line
-            {...({
-              dataKey: categories[1],
-              type: "monotone",
-              stackId: "a",
-              stroke: colors[1],
-              fill: colors[1],
-              dot: { fill: colors[1], stroke: colors[1], strokeWidth: 2, r: 4 },
-              label: showLabels ? (props: CustomLabelProps) => (
-                <CustomLabel
-                  {...props}
-                  fill={textColor}
-                  backgroundColor={backgroundColor}
-                  formatter={valueFormatter}
-                />
-              ) : false,
-            } as unknown as React.ComponentProps<typeof Line>)}
+            dataKey={categories[1]}
+            type="monotone"
+            stackId="a"
+            stroke={colors[1]}
+            fill={colors[1]}
+            dot={{ fill: colors[1], stroke: colors[1], strokeWidth: 2, r: 4 }}
+            label={showLabels ? (props: CustomLabelProps) => (
+              <CustomLabel
+                {...props}
+                fill={textColor}
+                backgroundColor={backgroundColor}
+                formatter={valueFormatter}
+              />
+            ) : false}
           />
         </LineChart>
       </ResponsiveContainer>

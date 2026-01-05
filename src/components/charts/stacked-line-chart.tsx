@@ -142,40 +142,36 @@ export function StackedLineChartComp({ data, categories, index, colors, chartCol
           />
           {showLegend && <Legend wrapperStyle={{ color: textColor }} />}
           <Line
-            {...({
-              dataKey: categories[0],
-              type: "monotone",
-              stackId: "a",
-              stroke: colors[0],
-              fill: colors[0],
-              dot: false,
-              label: showLabels ? (props: CustomLabelProps) => (
-                <CustomLabel
-                  {...props}
-                  fill={textColor}
-                  backgroundColor={backgroundColor}
-                  formatter={valueFormatter}
-                />
-              ) : false,
-            } as unknown as React.ComponentProps<typeof Line>)}
+            dataKey={categories[0]}
+            type="monotone"
+            stackId="a"
+            stroke={colors[0]}
+            fill={colors[0]}
+            dot={false}
+            label={showLabels ? (props: CustomLabelProps) => (
+              <CustomLabel
+                {...props}
+                fill={textColor}
+                backgroundColor={backgroundColor}
+                formatter={valueFormatter}
+              />
+            ) : false}
           />
           <Line
-            {...({
-              dataKey: categories[1],
-              type: "monotone",
-              stackId: "a",
-              stroke: colors[1],
-              fill: colors[1],
-              dot: false,
-              label: showLabels ? (props: CustomLabelProps) => (
-                <CustomLabel
-                  {...props}
-                  fill={textColor}
-                  backgroundColor={backgroundColor}
-                  formatter={valueFormatter}
-                />
-              ) : false,
-            } as unknown as React.ComponentProps<typeof Line>)}
+            dataKey={categories[1]}
+            type="monotone"
+            stackId="a"
+            stroke={colors[1]}
+            fill={colors[1]}
+            dot={false}
+            label={showLabels ? (props: CustomLabelProps) => (
+              <CustomLabel
+                {...props}
+                fill={textColor}
+                backgroundColor={backgroundColor}
+                formatter={valueFormatter}
+              />
+            ) : false}
           />
         </LineChart>
       </ResponsiveContainer>
