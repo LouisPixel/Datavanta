@@ -94,11 +94,11 @@ export function AreaChartComp({ data, categories, index, colors, chartColor, bac
     if (yAxisMin !== undefined && yAxisMax !== undefined) {
       return [yAxisMin, yAxisMax] as [number, number];
     } else if (yAxisMin !== undefined) {
-      return [yAxisMin, 'dataMax' as const];
+      return [yAxisMin, 'dataMax'] as [number, 'dataMax'];
     } else if (yAxisMax !== undefined) {
       return [0, yAxisMax] as [number, number];
     }
-    return [0, 'dataMax' as const] as const;
+    return [0, 'dataMax'] as [number, 'dataMax'];
   };
 
   const getBaseValue = () => {
@@ -140,7 +140,7 @@ export function AreaChartComp({ data, categories, index, colors, chartColor, bac
             tickLine={false}
             axisLine={false}
             tickFormatter={valueFormatter}
-            domain={getYAxisDomain()}
+            domain={getYAxisDomain() as [number, number] | [number, string] | [string, number]}
             stroke={textColor}
           >
             {yAxisLabel && (
