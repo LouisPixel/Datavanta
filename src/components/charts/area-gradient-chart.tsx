@@ -15,7 +15,7 @@ interface CustomLabelProps {
 
 // Custom label component with background
 const CustomLabel = ({ x, y, payload, fill, backgroundColor, formatter }: CustomLabelProps) => {
-  if (!payload || payload.value === undefined) return null;
+  if (!payload || payload.value === undefined || x === undefined || y === undefined) return null;
   const value = payload.value;
   const formattedValue = formatter && typeof value === 'number' ? formatter(value) : value;
   const textWidth = formattedValue.toString().length * 7;
