@@ -136,10 +136,11 @@ export function StackedLineChartComp({ data, categories, index, colors, chartCol
             </YAxis>
           )}
           <ChartTooltip
-            cursor={false}
-            content={<ChartTooltipContent indicator="dashed" style={{ backgroundColor: backgroundColor, color: textColor }} />}
+          cursor={false}
+          content={<ChartTooltipContent indicator="dashed" style={{ backgroundColor: backgroundColor, color: textColor }} />}
           />
           {showLegend && <Legend wrapperStyle={{ color: textColor }} />}
+          {/* @ts-expect-error Recharts Line typings are slightly out of sync with runtime props (stackId, label) */}
           <Line
             dataKey={categories[0]}
             type="monotone"
@@ -156,6 +157,7 @@ export function StackedLineChartComp({ data, categories, index, colors, chartCol
               />
             ) : false}
           />
+          {/* @ts-expect-error Recharts Line typings are slightly out of sync with runtime props (stackId, label) */}
           <Line
             dataKey={categories[1]}
             type="monotone"
