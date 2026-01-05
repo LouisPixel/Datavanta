@@ -37,7 +37,7 @@ const Preview = () => {
 
   return (
     <div
-      className="relative flex w-full h-full min-h-screen py-16 mb-24 justify-center items-center overflow-hidden"
+      className="relative flex w-full h-full min-h-screen py-16 mb-24 justify-center items-center overflow-hidden bg-[#070707]"
       ref={scope}
     >
       <motion.div

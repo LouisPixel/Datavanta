@@ -5,15 +5,15 @@ import Dashboard from '@/assets/images/NewDashboard.png';
 
 export default function FeaturesSection1() {
     return (
-     <section className="relative py-24 md:py-48 overflow-hidden">
+     <section className="relative py-24 md:py-48 overflow-hidden bg-[#070707] text-foreground">
             <div className="container max-w-[1220px] w-full px-6 md:px-10 relative z-10 mx-auto">
                 <div className="grid items-center gap-12 md:grid-cols-2 md:gap-12 lg:grid-cols-5 lg:gap-24">
                     <div className="lg:col-span-2">
                         <div className="md:pr-6 lg:pr-0">
-                            <h2 className="text-4xl font-semibold lg:text-5xl">Create Clean, Modern, and Amazing Graphs</h2>
-                            <p className="mt-6">Transform your data into stunning visualizations with Datavanta. Our intuitive platform empowers you to design beautiful, professional charts that tell your story with clarity and style.</p>
+                            <h2 className="text-4xl font-semibold lg:text-5xl text-foreground">Create Clean, Modern, and Amazing Graphs</h2>
+                            <p className="mt-6 text-foreground/70">Transform your data into stunning visualizations with Datavanta. Our intuitive platform empowers you to design beautiful, professional charts that tell your story with clarity and style.</p>
                         </div>
-                        <ul className="mt-8 divide-y border-y *:flex *:items-center *:gap-3 *:py-3">
+                        <ul className="mt-8 divide-y border-y border-border *:flex *:items-center *:gap-3 *:py-3 text-foreground">
                             <li>
                                 <Mail className="size-5" />
                                 Multiple chart types
