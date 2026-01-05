@@ -11,6 +11,13 @@ export const createProject = (
     COLORS: string[],
     sessionUserId: string | undefined
 ) => {
+    if (!sessionUserId) {
+        throw new Error('User ID is required to create a project');
+    }
+
+    // TypeScript now knows sessionUserId is string after the check
+    const userId: string = sessionUserId;
+
     const newPoints: DataPoint[] = [];
     let parsedHeaders: string[] = [];
     let parsedRows: string[][] = [];
@@ -52,7 +59,7 @@ export const createProject = (
         chartHeight: 400, // Default height in pixels
         chartWidth: 1170, // Default width in pixels
         lastModified: new Date().toLocaleDateString(),
-        userId: sessionUserId,
+        userId: userId,
     };
     const updatedProjects = [...projects, project];
     setProjects(updatedProjects);
