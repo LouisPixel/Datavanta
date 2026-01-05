@@ -50,7 +50,7 @@ export function BarChartStackedComp({ data, chartColor, chartColor2, backgroundC
           tickLine={false}
           axisLine={false}
           tickFormatter={(value) => value.toLocaleString()}
-          domain={[0, 'dataMax']}
+          domain={[0, 'dataMax'] as [number, string]}
           stroke={textColor}
         />
         <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />

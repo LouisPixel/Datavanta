@@ -75,7 +75,7 @@ export const RadarLinesChart: React.FC<RadarLinesChartProps> = ({
         <RechartsRadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
           <PolarGrid stroke={gridColor} />
           <PolarAngleAxis dataKey={index} tick={{ fill: textColor }} />
-          <PolarRadiusAxis angle={90} domain={[0, 'dataMax']} tick={false} axisLine={false} />
+          <PolarRadiusAxis angle={90} domain={[0, 'dataMax'] as [number, string]} tick={false} axisLine={false} />
           {(categories || []).map((cat, i) => (
             <Radar
               key={cat}

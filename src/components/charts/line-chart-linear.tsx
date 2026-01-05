@@ -51,7 +51,7 @@ export function LineChartLinearComp({ data, chartColor, backgroundColor, gridCol
           tickLine={false}
           axisLine={false}
           tickFormatter={(value) => value.toLocaleString()}
-          domain={[0, 'dataMax']}
+          domain={[0, 'dataMax'] as [number, string]}
         />
         <ChartTooltip cursor={false} content={<ChartTooltipContent indicator="dashed" />} />
         <Line

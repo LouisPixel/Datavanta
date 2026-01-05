@@ -46,7 +46,7 @@ export function BarChartWithLabelsComp({ data, chartColor, backgroundColor, grid
           tickLine={false}
           axisLine={false}
           tickFormatter={(value) => value.toLocaleString()}
-          domain={[0, 'dataMax']}
+          domain={[0, 'dataMax'] as [number, string]}
           stroke={textColor}
         />
         <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel style={{ backgroundColor, color: textColor }} />} />

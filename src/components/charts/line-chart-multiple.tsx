@@ -57,7 +57,7 @@ export function LineChartMultipleComp({ data, chartColor, chartColor2, backgroun
           tickLine={false}
           axisLine={false}
           tickFormatter={(value) => value.toLocaleString()}
-          domain={[0, 'dataMax']}
+          domain={[0, 'dataMax'] as [number, string]}
           stroke={textColor}
         />
         <ChartTooltip cursor={false} content={<ChartTooltipContent indicator="dashed" />} />

@@ -81,7 +81,7 @@ export function BarChartHorizontalComp({ data, categories, index, colors, chartC
             tickLine={false}
             axisLine={false}
             tickFormatter={valueFormatter}
-            domain={getXAxisDomain()}
+            domain={getXAxisDomain() as [number, number] | [number, string] | [string, number]}
             type="number"
             stroke={textColor}
           >

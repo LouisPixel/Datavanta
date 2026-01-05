@@ -96,7 +96,7 @@ export const RadialChart: React.FC<RadialChartProps> = ({
           endAngle={-270}
           barSize={10}
         >
-          <PolarAngleAxis type="number" domain={[0, 'dataMax']} angleAxisId={0} tick={false} />
+          <PolarAngleAxis type="number" domain={[0, 'dataMax'] as [number, string]} angleAxisId={0} tick={false} />
           <RadialBar
             minAngle={15}
             label={{ position: 'insideStart', fill: textColor }}
