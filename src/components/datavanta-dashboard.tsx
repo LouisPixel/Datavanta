@@ -32,7 +32,6 @@ import {
   StackedAreaChart, 
   StackedLineChart,
   StackedLineDotsChart,
-  RadialChart,
   RadarChart,
   RadarLinesChart,
   RadarDotsChart
@@ -88,12 +87,6 @@ const chartCategories: ChartCategory[] = [
             { type: 'radar', label: 'Radar', icon: Activity },
             { type: 'radar-lines', label: 'Radar Lines', icon: Activity },
             { type: 'radar-dots', label: 'Radar Dots', icon: Activity },
-        ],
-    },
-    {
-        name: 'Radial Charts',
-        charts: [
-            { type: 'radial', label: 'Radial Bar', icon: PieChartIcon },
         ],
     },
 ];
@@ -156,8 +149,6 @@ const renderChart = ({ project, chartRef, chartData, valueFormatter }: { project
                         return <PieChart data={chartData as ({ label: string; value: number; })[]} category="value" index="label" colors={[project.chartColor]} chartColor={project.chartColor} backgroundColor={project.backgroundColor} textColor={project.textColor} valueFormatter={valueFormatter} showLegend={showLegend} legendLabel={legendLabel} mt="h-full" />;
                     case 'donut':
                         return <DonutChart data={chartData as ({ label: string; value: number; })[]} category="value" index="label" colors={[project.chartColor]} chartColor={project.chartColor} backgroundColor={project.backgroundColor} textColor={project.textColor} valueFormatter={valueFormatter} showLegend={showLegend} legendLabel={legendLabel} mt="h-full" />;
-                    case 'radial':
-                        return <RadialChart data={chartData as ({ label: string; value: number; })[]} category="value" index="label" colors={[project.chartColor]} chartColor={project.chartColor} backgroundColor={project.backgroundColor} gridColor={project.gridColor} textColor={project.textColor} valueFormatter={valueFormatter} showLegend={showLegend} legendLabel={legendLabel} mt="h-full" />;
                     case 'radar':
                         return <RadarChart data={chartData as ({ label: string; value: number; })[]} categories={['value']} index="label" colors={[project.chartColor]} chartColor={project.chartColor} backgroundColor={project.backgroundColor} gridColor={project.gridColor} textColor={project.textColor} valueFormatter={valueFormatter} showLegend={showLegend} legendLabel={legendLabel} mt="h-full" />;
                     case 'radar-lines':

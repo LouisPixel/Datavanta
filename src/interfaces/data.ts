@@ -12,7 +12,7 @@ export interface Project {
     name: string;
     description: string;
     data: DataPoint[];
-    chartType: 'bar' | 'bar-horizontal' | 'line' | 'line-dots' | 'line-step' | 'pie' | 'donut' | 'area' | 'area-step' | 'area-gradient' | 'stacked-bar' | 'stacked-area' | 'stacked-line' | 'stacked-line-dots' | 'radial' | 'radar' | 'radar-lines' | 'radar-dots' | 'scatter' | 'heatmap';
+    chartType: 'bar' | 'bar-horizontal' | 'line' | 'line-dots' | 'line-step' | 'pie' | 'donut' | 'area' | 'area-step' | 'area-gradient' | 'stacked-bar' | 'stacked-area' | 'stacked-line' | 'stacked-line-dots' | 'radar' | 'radar-lines' | 'radar-dots' | 'scatter' | 'heatmap';
     chartColor: string;
     chartColor2?: string;
     backgroundColor: string;
