@@ -7,11 +7,17 @@ import { nextCookies } from "better-auth/next-js";
 
 // Build a social providers config only if credentials are available
 const socialProviders: { google?: { clientId: string; clientSecret: string } } = {};
-if (env.AUTH_GOOGLE_CLIENT_ID && env.AUTH_GOOGLE_SECRET) {
+const hasGoogleCredentials = !!(env.AUTH_GOOGLE_CLIENT_ID && env.AUTH_GOOGLE_SECRET);
+if (hasGoogleCredentials) {
     socialProviders.google = {
         clientId: env.AUTH_GOOGLE_CLIENT_ID,
         clientSecret: env.AUTH_GOOGLE_SECRET,
     };
+} else {
+    // Log warning in development
+    if (process.env.NODE_ENV === 'development') {
+        console.warn('Google OAuth is not configured. Set AUTH_GOOGLE_CLIENT_ID and AUTH_GOOGLE_SECRET environment variables.');
+    }
 }
 
 export const auth = betterAuth({
