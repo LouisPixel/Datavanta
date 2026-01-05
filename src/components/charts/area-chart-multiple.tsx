@@ -62,7 +62,6 @@ export function AreaChartMultipleComp({ data, chartColor, chartColor2, backgroun
         />
         <ChartTooltip cursor={false} content={<ChartTooltipContent indicator="dashed" />} />
         <Legend wrapperStyle={{ color: textColor }} />
-        {/* @ts-expect-error - Recharts type mismatch with stackId prop */}
         <Area
           dataKey="value"
           type="monotone"
@@ -70,7 +69,6 @@ export function AreaChartMultipleComp({ data, chartColor, chartColor2, backgroun
           stroke={chartColor}
           stackId="a"
         />
-        {/* @ts-expect-error - Recharts type mismatch with stackId prop */}
         <Area
           dataKey="value2"
           type="monotone"
