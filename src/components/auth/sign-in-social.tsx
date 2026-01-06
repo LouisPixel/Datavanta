@@ -27,10 +27,17 @@ export default function SignInSocial({
             });
             
             // If we get a result (not a redirect), check for errors
-            if (result && 'error' in result) {
-                console.error("Sign in error:", result.error);
-                const errorMsg = result.error?.message || 'Google authentication failed';
-                const fullError = typeof result.error === 'object' ? JSON.stringify(result.error, null, 2) : String(result.error);
+            if (result && typeof result === 'object' && 'error' in result) {
+                const error = result.error as { message?: string } | string | unknown;
+                console.error("Sign in error:", error);
+                const errorMsg = (typeof error === 'object' && error !== null && 'message' in error) 
+                    ? String(error.message) 
+                    : typeof error === 'string' 
+                        ? error 
+                        : 'Google authentication failed';
+                const fullError = typeof error === 'object' && error !== null 
+                    ? JSON.stringify(error, null, 2) 
+                    : String(error);
                 console.error("Full error details:", fullError);
                 
                 toast.error(`Failed to sign in: ${errorMsg}`, {
