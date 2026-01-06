@@ -10,7 +10,20 @@ const skipValidation =
 
 export const env = createEnv({
   server: {
-    DATABASE_URL: z.string().url(),
+    // Accept PostgreSQL connection strings (postgresql:// or postgres://)
+    // Neon database connection strings are typically postgresql://
+    DATABASE_URL: z.string().refine(
+      (val) => {
+        // Allow postgresql://, postgres://, or Neon connection pooling URLs
+        return val.startsWith('postgresql://') || 
+               val.startsWith('postgres://') ||
+               val.startsWith('postgresql+pooler://') ||
+               val.includes('neon.tech');
+      },
+      {
+        message: 'DATABASE_URL must be a valid PostgreSQL connection string (postgresql:// or postgres://)',
+      }
+    ),
     BETTER_AUTH_SECRET: z.string().min(1),
     BETTER_AUTH_URL: z.string().url().optional(),
     // Make Google OAuth optional - they might not be set

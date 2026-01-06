@@ -10,8 +10,9 @@ const getBaseURL = () => {
     // Fallback for SSR (shouldn't happen in client component, but just in case)
     const envURL = process.env.NEXT_PUBLIC_BETTER_AUTH_URL || process.env.BETTER_AUTH_URL;
     if (envURL) {
-        // If env URL already includes /api/auth, use it as is, otherwise append it
-        return envURL.endsWith('/api/auth') ? envURL : `${envURL}/api/auth`;
+        // Remove /api/auth if present, then add it back
+        const base = envURL.replace(/\/api\/auth\/?$/, '');
+        return `${base}/api/auth`;
     }
     return "http://localhost:3000/api/auth";
 };

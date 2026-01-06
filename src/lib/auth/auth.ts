@@ -27,23 +27,37 @@ if (hasGoogleCredentials) {
     });
 }
 
-// Get baseURL - should be the full URL to the API route (e.g., https://yourdomain.com/api/auth)
-// If BETTER_AUTH_URL is set, use it; otherwise construct from NEXT_PUBLIC_VERCEL_URL or default
+// Get baseURL - Better Auth expects the site root URL, not the API route
+// It will automatically append /api/auth when needed
 const getBaseURL = () => {
     const envURL = env.BETTER_AUTH_URL || process.env.BETTER_AUTH_URL;
     if (envURL) {
-        // If env URL already includes /api/auth, use it as is, otherwise append it
-        return envURL.endsWith('/api/auth') ? envURL : `${envURL}/api/auth`;
+        // Remove /api/auth if present, Better Auth will add it
+        return envURL.replace(/\/api\/auth\/?$/, '');
+    }
+    // Try Netlify environment variables
+    if (process.env.NETLIFY) {
+        const url = process.env.URL || process.env.DEPLOY_PRIME_URL;
+        if (url) {
+            return url;
+        }
     }
     // Fallback for development
     return process.env.NEXT_PUBLIC_VERCEL_URL 
-        ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/auth`
-        : "http://localhost:3000/api/auth";
+        ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+        : "http://localhost:3000";
 };
+
+const baseURL = getBaseURL();
+console.log('Better Auth baseURL:', baseURL);
+console.log('Google OAuth configured:', hasGoogleCredentials);
+if (hasGoogleCredentials) {
+    console.log('Expected Google redirect URI:', `${baseURL}/api/auth/callback/google`);
+}
 
 export const auth = betterAuth({
     secret: env.BETTER_AUTH_SECRET || process.env.BETTER_AUTH_SECRET || "default-secret-change-in-production",
-    baseURL: getBaseURL(),
+    baseURL: baseURL,
     database: prismaAdapter(prisma, {
         provider: "postgresql", // or "mysql", "postgresql", ...etc
     }),

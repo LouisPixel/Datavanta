@@ -4,4 +4,5 @@
 
 [build.environment]
   PRISMA_GENERATE_DATAPROXY = "false"
+  PRISMA_CLI_BINARY_TARGETS = "native"
 
