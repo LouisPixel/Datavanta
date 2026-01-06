@@ -27,9 +27,23 @@ if (hasGoogleCredentials) {
     });
 }
 
+// Get baseURL - should be the full URL to the API route (e.g., https://yourdomain.com/api/auth)
+// If BETTER_AUTH_URL is set, use it; otherwise construct from NEXT_PUBLIC_VERCEL_URL or default
+const getBaseURL = () => {
+    const envURL = env.BETTER_AUTH_URL || process.env.BETTER_AUTH_URL;
+    if (envURL) {
+        // If env URL already includes /api/auth, use it as is, otherwise append it
+        return envURL.endsWith('/api/auth') ? envURL : `${envURL}/api/auth`;
+    }
+    // Fallback for development
+    return process.env.NEXT_PUBLIC_VERCEL_URL 
+        ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/auth`
+        : "http://localhost:3000/api/auth";
+};
+
 export const auth = betterAuth({
     secret: env.BETTER_AUTH_SECRET || process.env.BETTER_AUTH_SECRET || "default-secret-change-in-production",
-    baseURL: env.BETTER_AUTH_URL || process.env.BETTER_AUTH_URL,
+    baseURL: getBaseURL(),
     database: prismaAdapter(prisma, {
         provider: "postgresql", // or "mysql", "postgresql", ...etc
     }),
