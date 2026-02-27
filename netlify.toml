@@ -5,3 +5,23 @@
 [build.environment]
   PRISMA_GENERATE_DATAPROXY = "false"
 
+# Ensure Next.js static JS chunks are served with the correct MIME type
+[[headers]]
+  for = "/_next/static/chunks/*"
+  [headers.values]
+    Content-Type = "application/javascript; charset=utf-8"
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Fix 404s for Next.js route group chunks — Netlify URL-encodes parentheses
+# in paths (%28auth%29) but the files are stored with literal parentheses
+[[redirects]]
+  from = "/_next/static/chunks/app/%28auth%29/*"
+  to = "/_next/static/chunks/app/(auth)/:splat"
+  status = 200
+  force = true
+
