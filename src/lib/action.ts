@@ -1,6 +1,7 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { headers } from "next/headers";
 import { auth } from "./auth/auth";
 import { prisma } from "./db";
 import { APIError } from "better-auth/api";
@@ -22,6 +23,8 @@ export async function signIn(prevState: State, formData: FormData) {
     return { errorMessage: "Email and password are required." };
   }
 
+  let success = false;
+
   try {
     console.log("Attempting to sign in user:", email);
     await auth.api.signInEmail({
@@ -29,9 +32,10 @@ export async function signIn(prevState: State, formData: FormData) {
         email,
         password,
       },
+      headers: await headers(),
     });
     console.log("Sign in successful");
-    redirect("/dashboard");
+    success = true;
   } catch (error) {
     console.error("Sign in error:", error);
     if (error instanceof APIError) {
@@ -48,6 +52,12 @@ export async function signIn(prevState: State, formData: FormData) {
     const errorMessage = error instanceof Error ? error.message : "An unexpected error occurred";
     return { errorMessage: `Sign in failed: ${errorMessage}` };
   }
+
+  if (success) {
+    redirect("/dashboard");
+  }
+
+  return { errorMessage: "" };
 }
 
 export async function signUp(prevState: State, formData: FormData) {
@@ -69,6 +79,8 @@ export async function signUp(prevState: State, formData: FormData) {
     return { errorMessage: "First name and last name are required." };
   }
 
+  let success = false;
+
   try {
     console.log("Attempting to sign up user:", email);
     await auth.api.signUpEmail({
@@ -77,9 +89,10 @@ export async function signUp(prevState: State, formData: FormData) {
         email,
         password,
       },
+      headers: await headers(),
     });
     console.log("Sign up successful");
-    redirect("/dashboard");
+    success = true;
   } catch (error) {
     console.error("Sign up error:", error);
     if (error instanceof APIError) {
@@ -96,6 +109,12 @@ export async function signUp(prevState: State, formData: FormData) {
     const errorMessage = error instanceof Error ? error.message : "An unexpected error occurred";
     return { errorMessage: `Sign up failed: ${errorMessage}` };
   }
+
+  if (success) {
+    redirect("/dashboard");
+  }
+
+  return { errorMessage: "" };
 }
 
 export async function searchAccount(email: string) {

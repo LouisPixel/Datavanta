@@ -16,7 +16,7 @@ function ForgotPasswordForm() {
         e.preventDefault();
         const { error } = await forgetPassword({
             email,
-            redirectTo: `${window.location.origin}/login/forgot-account/forgot-password/rest-password`,
+            redirectTo: `${window.location.origin}/login/forgot-account/forgot-password/reset-password`,
         });
         
         if (error) {
